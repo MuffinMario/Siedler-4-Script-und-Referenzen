@@ -1,0 +1,79 @@
+-- =============================================================================
+--// dark10
+--// Player wins when explore the hole map
+--//   0.90.545 
+-- =============================================================================
+
+
+-- -----------------------------------------------------------------------------
+--// Enable the Land Explored Check by starting or loading the game
+-- -----------------------------------------------------------------------------
+
+function TurnOnLandExploreCheck()
+	Game.EnableLandExploredCheck(1)
+end
+
+
+-- -----------------------------------------------------------------------------
+--// Victory condition check: Player wins when one of his settlers discovered a 
+--// certain circle on the map
+-- -----------------------------------------------------------------------------
+
+function VictoryConditionCheck()
+
+Game.DefaultPlayersLostCheck()
+
+if Game.IsAlmostAllLandExplored() == 1 then
+	Game.EnemyPlayersLost(1)
+end
+
+Game.DefaultGameEndCheck("DARKTRIBE_SCRIPT_TEN_01","DARKTRIBE_SCRIPT_TEN_02")
+
+end
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(2, "AttackDelay", 70, 50, 30) 
+	AI.SetPlayerVar(3, "AttackDelay", 70, 50, 30) 
+	AI.SetPlayerVar(4, "AttackDelay", 70, 50, 30) 
+
+	--// AttackMode = 0 //--
+	AI.SetPlayerVar(2, "AttackMode", 1, 1, 2) 
+	AI.SetPlayerVar(3, "AttackMode", 1, 1, 2) 
+	AI.SetPlayerVar(4, "AttackMode", 1, 1, 2) 
+
+	--// SoldierLimitAbsolute//--
+	AI.SetPlayerVar(3, "SoldierLimitAbsolute", 100,150,300)
+	AI.SetPlayerVar(4, "SoldierLimitAbsolute", 80,150,300)
+
+	--//SoldierLimitRelative//--
+	AI.SetPlayerVar(3, "SoldierLimitRelative", 80,100,150)
+	AI.SetPlayerVar(4, "SoldierLimitRelative", 60,80,150)
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	request_event(TurnOnLandExploreCheck,Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+--// The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	-- // gShowEnemies_SuppressDefaultTargets = 1
+	-- // tinsert(gTargets, {283,303})
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+	reg_func(TurnOnLandExploreCheck)
+end

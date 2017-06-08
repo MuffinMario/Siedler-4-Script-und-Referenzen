@@ -1,0 +1,51 @@
+-- =============================================================================
+-- roman-02
+-- Player wins when he destroys a small Mayan temple at a certain coordinate.
+-- FIXED. TESTET WITH 0.90.538. ANDI
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- Victory condition check: Is small Mayan temple at a certain coordinate not existing anymore?
+-- -----------------------------------------------------------------------------
+
+
+function VictoryConditionCheck()
+
+	if Buildings.ExistsBuildingInArea(2, Buildings.SMALLTEMPLE, 397, 368, 4) == 0 then
+		Game.EnemyPlayersLost(1)
+	else
+		Game.DefaultPlayersLostCheck()
+	end
+
+	Game.DefaultGameEndCheck()
+
+end
+
+
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// no PIONEER
+	AI.SetPlayerVar(2, "UsePioneers", 0)
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 90,150,300)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 50,110,150)
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	ShowEnemies_new_game()
+end
+
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {397,370})
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+end

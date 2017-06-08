@@ -1,0 +1,79 @@
+-- =============================================================================
+-- maya-03
+-- Player gets neccessary raw material 
+-- when he builds a maya stone head at a certain coordinate.
+-- TEXT NOT FINISHED. SUCCESSFULLY TESTED WITH V 0.90.538 ANDI
+-- NOT ALL EFFECT AND PILE POSITIONS OK STILL IN WORK
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- Check: Did Player build Mayan Stone Head at right coordinate? 
+-- Then give lots of iron good piles. I think will will modify the map for a better place for iron
+-- -----------------------------------------------------------------------------
+
+function StoneHeadCheck()
+
+	if Buildings.ExistsBuildingInArea(1, Buildings.EYECATCHER02, 71, 361, 8) == 1 then
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 72, 360, 0)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 73, 363, 5)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 71, 361, 10)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 70, 366, 3)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 74, 359, 8)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 68, 357, 12)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 76, 360, 6)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 67, 358, 2)
+		Game.ShowText("MAYANS_SCRIPT_THREE_01")
+		Goods.AddPileEx(68, 367, Goods.IRONBAR, 4)
+		Goods.AddPileEx(77, 364, Goods.IRONBAR, 2)
+		Goods.AddPileEx(72, 358, Goods.IRONBAR, 5)
+		Goods.AddPileEx(67, 357, Goods.IRONBAR, 6)
+		Goods.AddPileEx(78, 363, Goods.IRONBAR, 2)
+		Goods.AddPileEx(75, 366, Goods.IRONBAR, 3)
+		Goods.AddPileEx(79, 357, Goods.IRONBAR, 5)
+		Goods.AddPileEx(69, 355, Goods.IRONBAR, 3)
+		Goods.AddPileEx(74, 357, Goods.IRONBAR, 4)
+		Goods.AddPileEx(76, 354, Goods.IRONBAR, 3)
+		Goods.AddPileEx(69, 363, Goods.IRONBAR, 4)
+		Goods.AddPileEx(68, 364, Goods.IRONBAR, 2)
+		Goods.AddPileEx(76, 365, Goods.IRONBAR, 3)
+		Goods.AddPileEx(66, 367, Goods.IRONBAR, 2)
+		Goods.AddPileEx(67, 357, Goods.IRONBAR, 4)
+		Goods.AddPileEx(75, 364, Goods.IRONBAR, 3)
+		unrequest_event(StoneHeadCheck, Events.FIVE_TICKS)
+	end
+
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	Goods.AddPileEx(101, 346, Goods.GOLDBAR, 4)
+
+	--// SOLDIERLIMITRELATIVE  ROMAN//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 120,250,400)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 100,130,150)
+
+	--// SOLDIERLIMITRELATIVE  VIKING//--
+	AI.SetPlayerVar(3, "SoldierLimitAbsolute", 150,250,400)
+	AI.SetPlayerVar(3, "SoldierLimitRelative", 100,130,150)
+
+	request_event(StoneHeadCheck, Events.FIVE_TICKS)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+
+	reg_func(StoneHeadCheck)
+end

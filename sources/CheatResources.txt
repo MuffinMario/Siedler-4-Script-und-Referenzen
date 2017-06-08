@@ -1,0 +1,164 @@
+
+-- ---------------------------------
+--
+-- cheat for resources in map
+--
+-- ---------------------------------
+
+
+function CreateStartResourcesFew(_X, _Y, _Player)
+
+	-- Create piles
+
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,  8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,  8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,  4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.AXE,     6)
+	
+	Goods.AddPileEx(_X, _Y, Goods.PICKAXE, 4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SAW,     2)
+	
+end
+
+
+function CreateStartResourcesMedium(_X, _Y, _Player)
+
+	-- Create piles
+	
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,   2)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,  8)
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,  8)
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,  4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,  8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,  8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,  8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.AXE,     8)
+	Goods.AddPileEx(_X, _Y, Goods.AXE,     8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.PICKAXE, 6)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SAW,     4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.ROD,     2)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SCYTHE,  2)
+	
+	Goods.AddPileEx(_X, _Y, Goods.FISH,    8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.BREAD,   8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.MEAT,    8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.COAL,    8)
+	Goods.AddPileEx(_X, _Y, Goods.COAL,    8)
+		
+	Goods.AddPileEx(_X, _Y, Goods.IRONBAR, 8)
+
+end
+
+
+function CreateStartResourcesMany(_X, _Y, _Player)
+
+-- Create piles
+	
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BOARD,8)
+
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	Goods.AddPileEx(_X, _Y, Goods.STONE,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,8)
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,8)
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,8)
+	Goods.AddPileEx(_X, _Y, Goods.SHOVEL,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,8)
+	Goods.AddPileEx(_X, _Y, Goods.HAMMER,4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.AXE,8)
+	Goods.AddPileEx(_X, _Y, Goods.AXE,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.PICKAXE,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SAW,6)
+	
+	Goods.AddPileEx(_X, _Y, Goods.ROD,4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.SCYTHE,4)
+	
+	Goods.AddPileEx(_X, _Y, Goods.FISH,8)
+	Goods.AddPileEx(_X, _Y, Goods.FISH,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.BREAD,8)
+	Goods.AddPileEx(_X, _Y, Goods.BREAD,8)
+		
+	Goods.AddPileEx(_X, _Y, Goods.MEAT,8)
+	Goods.AddPileEx(_X, _Y, Goods.MEAT,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.COAL,8)
+	Goods.AddPileEx(_X, _Y, Goods.COAL,8)
+	Goods.AddPileEx(_X, _Y, Goods.COAL,8)
+	Goods.AddPileEx(_X, _Y, Goods.COAL,8)
+	Goods.AddPileEx(_X, _Y, Goods.COAL,6)
+	
+	Goods.AddPileEx(_X, _Y, Goods.GOLDBAR,8)
+	Goods.AddPileEx(_X, _Y, Goods.GOLDBAR,8)
+	Goods.AddPileEx(_X, _Y, Goods.GOLDBAR,8)
+	Goods.AddPileEx(_X, _Y, Goods.GOLDBAR,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.WATER,8)
+	Goods.AddPileEx(_X, _Y, Goods.WATER,8)
+	Goods.AddPileEx(_X, _Y, Goods.WATER,8)
+	Goods.AddPileEx(_X, _Y, Goods.WATER,8)
+	
+	Goods.AddPileEx(_X, _Y, Goods.GRAIN,8)
+	Goods.AddPileEx(_X, _Y, Goods.GRAIN,8)
+		
+	Goods.AddPileEx(_X, _Y, Goods.IRONBAR,8)
+	Goods.AddPileEx(_X, _Y, Goods.IRONORE,8)
+	Goods.AddPileEx(_X, _Y, Goods.IRONBAR,8)
+	Goods.AddPileEx(_X, _Y, Goods.IRONORE,8)
+    
+	Goods.AddPileEx(_X, _Y, Goods.BOW,2) -- for hunter
+	
+end

@@ -1,0 +1,97 @@
+-- =============================================================================
+-- dark-07
+-- Player wins when his territory is connected to the 2 allied AI territories
+-- Remark: As it is, this function is vulnerable against the shifting of all of the
+-- players territory away from the coordinate given in Game.ArePlayerAreasConnected
+-- (this is done so the player can't just send a few pioneers to the borders of
+-- his allies). On this map, this should be VERY unlikely, though.
+
+-- =============================================================================
+
+
+function InitVar()
+	--// flag for showing the text one time
+	Vars.Save1 = 1
+	Vars.Save2 = 1
+end
+
+function DarkTribeAttacks()
+	if Game.IsAreaOwned ( Game.LocalPlayer(), 303,164,1 ) == 1 and Vars.Save1 == 1 then
+		AI.AttackNow(4,1,1)
+		Vars.Save1 = 0
+	end
+	
+	if Game.IsAreaOwned ( Game.LocalPlayer(), 198,325,1 ) == 1 and Vars.Save1 == 1 then
+		AI.AttackNow(4,1,1)
+		Vars.Save2 = 0
+	end
+	unrequest_event(DarkTribeAttacks, Events.FIVE_TICKS)
+end
+
+-- -----------------------------------------------------------------------------
+-- Victory condition check: Territory of Player (1) connected to the 2 allied AI 
+-- territories (2 & 3)?
+-- -----------------------------------------------------------------------------
+
+function VictoryConditionCheck()
+
+	Game.DefaultPlayersLostCheck()
+ 	
+ 	if (Game.ArePlayerAreasConnected(1, 260, 279,2,98,353) == 1) and (Game.ArePlayerAreasConnected(1, 260, 279, 3, 367, 116) == 1) then
+     		Game.EnemyPlayersLost(1)
+  	end
+
+  	Game.DefaultGameEndCheck("ROMANS_SCRIPT_THREE_02","ROMANS_SCRIPT_THREE_02")
+  
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(4, "AttackDelay", 40, 30, 5) 
+	--//DTMaxFarmsPerHour//--
+	AI.SetPlayerVar(4, "DTMaxFarmsPerHour", 8, 11, 20)
+  
+	--//BUGFIX: set mushroomfarms //--
+	Buildings.AddBuildingEx(277,145, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(191,78, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(109,111, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(121,166, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(137,231, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(201,380, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(256,381, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(317,421, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(408,386, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(407,286, 4, Buildings.MUSHROOMFARM)
+	Buildings.AddBuildingEx(354,253, 4, Buildings.MUSHROOMFARM)
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	request_event(DarkTribeAttacks, Events.FIVE_TICKS)
+	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------	
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {98,353})
+	tinsert(gShowEnemies_Targets, {367,116})
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+	reg_func(DarkTribeAttacks)
+	reg_func(InitVar )
+end

@@ -1,0 +1,237 @@
+-- ===================================================
+-- Dark04
+-- Enemy soldiers will attack 
+-- the player has gTimeOut time to win the campaign
+-- evtl. Countdown einbauen
+-- ===================================================
+
+
+	--// time to win
+	gTimeOut = 90
+
+	--// Amount of Mushroomfarms, the Player must destroy
+	gMushroomfarmsToDestroy = 3
+
+
+
+function InitVar()
+
+
+	--// toggling flag for one-time call
+	Vars.Save1 = 1 
+
+	--// set time period in minutes here
+	Vars.Save6 = 20 +  Game.Random(5)
+	
+	--// first time of "enemy landing"  
+	Vars.Save2 = 20 +  Game.Random(5)
+
+	--// flag for showing the text one time
+	Vars.Save7 = 0
+
+	--// not in use
+	Vars.Save8 = 2
+
+	--// flag for activates the clock dialog one time
+	Vars.Save9 = 1
+	
+	
+	if Game.GetDifficulty() == 0 then	
+		--// counters for # of soldiers for EASY
+		--//SWORDSMAN //--
+		Vars.Save3 = 2
+		--//BOWMAN //--
+		Vars.Save4 = 1 
+		--//BLOWGUNWARRIOR //--
+		Vars.Save5 = 2 
+		
+		else
+		--// counters for # of soldiers for NORMAL
+		--//SWORDSMAN //--
+		Vars.Save3 = 3
+		--//BOWMAN //--
+		Vars.Save4 = 2 
+		--//BLOWGUNWARRIOR //--
+		Vars.Save5 = 2 
+		
+		end
+
+end
+
+
+--// -----------------------------------------------------------------------------
+--// Activate the clock
+--// -----------------------------------------------------------------------------
+
+function TurnOnTheClock()
+	Game.ShowClock(5400)
+	
+end
+
+--// -----------------------------------------------------------------------------
+--// Generate Ship & Enemy soldiers every Vars.Save2 min. 
+--// With growing number of soldiers
+--// -----------------------------------------------------------------------------
+
+function GenerateEnemies()
+  	
+--// -----------------------------------------------------------------------------
+--// Countdown
+--// -----------------------------------------------------------------------------	
+--// Zeitansage 10 min vor schluß //--
+	
+	if Game.Time() >= (gTimeOut - 10) and  Vars.Save7 == 2 then
+		Game.ShowText("TIME_REMAIN_01")
+		Vars.Save7 = 3
+	end
+
+--// Zeitansage nach 3/4 der Zeit//--
+	if (Game.Time() >= (gTimeOut - 20)) and  (Vars.Save7 == 1) then
+		Game.ShowText("TIME_REMAIN_02")
+		Vars.Save7 = 2
+	end
+--// Zeitansage nach Hälfte der Zeit//--
+	if Game.Time() >= (gTimeOut/2) and  Vars.Save7 == 0 then
+		Game.ShowText("TIME_REMAIN_03")
+		Vars.Save7 = 1 
+	end
+	
+--// -----------------------------------------------------------------------------
+--// switch ship on and deliever soldiers
+--// -----------------------------------------------------------------------------
+	if Game.Time() == Vars.Save2 and Vars.Save1 == 1 then
+		Vehicles.AddVehicle(340, 8, 2, Vehicles.FERRY, 5)
+		Settlers.AddSettlers(342, 16, 2, Settlers.SWORDSMAN_01, Vars.Save3)
+		Settlers.AddSettlers(343, 16, 2, Settlers.BOWMAN_01, Vars.Save4)
+		Settlers.AddSettlers(344, 16, 2, Settlers.BLOWGUNWARRIOR_01, Vars.Save5)
+		Vars.Save1 = 0
+
+--// send new squad home
+
+		AI.NewSquad(2, AI.CMD_SUICIDE_MISSION )
+
+--// set time period for switch ship off
+
+		Vars.Save2 = Vars.Save2 + 1
+		
+--// increase number of soldiers for next delievery
+		if Game.GetDifficulty() == 0 then	
+    		--//easy//-- 
+    			--//SWORDSMAN //--
+			Vars.Save3 = Vars.Save3 + 2
+			--//BOWMAN //--
+			Vars.Save4 = Vars.Save4 + 1 
+			--//BLOWGUNWARRIOR //--
+			Vars.Save5 = Vars.Save5 + 2 
+    		else
+    		--//normal//--
+    			--//SWORDSMAN //--
+			Vars.Save3 = Vars.Save3 + 3
+			--//BOWMAN //--
+			Vars.Save4 = Vars.Save4 + 2 
+			--//BLOWGUNWARRIOR //--
+			Vars.Save5 = Vars.Save5 + 2 
+    		end
+	end
+-- -----------------------------------------------------------------------------
+-- switch ship off after one minute
+-- -----------------------------------------------------------------------------
+--// wenns noch geht, schiff wegfahren lassen, muß erstnoch die funktion ausprobieren //--
+	if Game.Time() == Vars.Save2 and Vars.Save1 == 0 then
+		Vehicles.KillVehicles(2, Vehicles.FERRY,340, 8, 5)
+		Vars.Save1 = 1
+		
+-- set next time period for switch ship on
+
+		Vars.Save2 = Vars.Save2 - 1
+		Vars.Save2 = Vars.Save2 + Vars.Save6
+		Vars.Save6 = 20 +  Game.Random(5)
+		
+	end
+end
+-- -----------------------------------------------------------------------------
+
+function VictoryConditionCheck()
+
+	Game.DefaultPlayersLostCheck()
+
+	if (Game.HasPlayerLost(1) == 0) and (Statistic.MushroomFarmsDestroyed(1) >= gMushroomfarmsToDestroy)  then
+  		Game.EnemyPlayersLost(1)
+	end
+
+		
+--// -----------------------------------------------------------------------------
+--// Game lost until time out 
+--// -----------------------------------------------------------------------------
+
+	--// beenden des Spiels bei überschreitung der zeit //--
+
+	if Game.Time() >=  gTimeOut then  
+		Game.EnemyPlayersLost(3)
+	end
+
+	Game.DefaultGameEndCheck()
+	Game.DefaultPlayerLostCheck(1)
+
+--// -----------------------------------------------------------------------------
+
+	Game.DefaultGameEndCheck("DARKTRIBE_SCRIPT_FOUR_01","DARKTRIBE_SCRIPT_FOUR_02")
+	
+end
+
+--//--------------------------------------------------------------------------
+
+
+function new_game()
+
+
+  	--//SetPlayerVar//--
+
+	--//DTMaxFarmsPerHour//--
+	
+	AI.SetPlayerVar(3, "DTMaxFarmsPerHour", 4, 4, 12)
+	
+	
+	--//AttackDelay//--
+  	  
+  	AI.SetPlayerVar(2, "AttackMode", 0, 1, 2) 
+	AI.SetPlayerVar(3, "AttackDelay", 70, 40, 10) 
+  
+  
+  --//DISABLE THE PRODUCTION OF SHAMANS AND DARK GARDENERS	
+
+	AI.DarkTribeUseShamans(3,0)
+
+	--// more tools  //--
+	if Game.GetDifficulty() == 0 then	
+		Goods.AddPileEx(283,250,Goods.SAW,1)
+		Goods.AddPileEx(278,252,Goods.SHOVEL,2)
+		Goods.AddPileEx(277,242,Goods.PICKAXE,1)
+		Goods.AddPileEx(283,265,Goods.AXE,1)
+	end
+
+
+	request_event(TurnOnTheClock,Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
+	request_event(GenerateEnemies, Events.FIVE_TICKS)
+  	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+  	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+	ShowEnemies_new_game()
+end
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {85,148})
+	ShowEnemies_register_functions()
+
+	reg_func(GenerateEnemies)
+	reg_func(VictoryConditionCheck)
+	reg_func(TurnOnTheClock)
+	reg_func(InitVar)
+end

@@ -1,0 +1,185 @@
+-- AO_trojan12
+-- =============================================================================
+function InitVar()
+	Vars.Save1 = 1
+	Vars.Save2 = 1
+	Vars.Save3 = 1
+	Vars.Save4 = 1
+	Vars.Save5 = 1
+end
+
+function AttackCheck()
+	if (Buildings.ExistsBuildingInArea(5,Buildings.MUSHROOMFARM,283,512,5,Buildings.READY) == 0
+	and Buildings.ExistsBuildingInArea(6,Buildings.MUSHROOMFARM,283,512,5,Buildings.READY) == 0)
+	and Vars.Save1 == 1 then
+		AI.AttackNow(6,1,3)
+		AI.AttackNow(5,2,3)
+		Vars.Save1 = 0
+		dbg.pi(1)
+	end
+
+
+	if (Buildings.ExistsBuildingInArea(5,Buildings.MUSHROOMFARM,289,396,5,Buildings.READY) == 0
+	and Buildings.ExistsBuildingInArea(6,Buildings.MUSHROOMFARM,289,396,5,Buildings.READY) == 0)
+	and Vars.Save2 == 1 then
+		AI.AttackNow(6,1,3)
+		AI.AttackNow(5,3,3)
+		Vars.Save2 = 0
+		dbg.pi(2)
+	end
+
+	if (Buildings.ExistsBuildingInArea(5,Buildings.MUSHROOMFARM,249,409,5,Buildings.READY) == 0
+	and Buildings.ExistsBuildingInArea(6,Buildings.MUSHROOMFARM,249,409,5,Buildings.READY) == 0)
+	and Vars.Save3 == 1 then
+		AI.AttackNow(6,1,3)
+		AI.AttackNow(5,4,3)
+		Vars.Save3 = 0
+		dbg.pi(3)
+	end
+
+	if (Buildings.ExistsBuildingInArea(5,Buildings.MUSHROOMFARM,691,708,5,Buildings.READY) == 0
+	and Buildings.ExistsBuildingInArea(6,Buildings.MUSHROOMFARM,691,708,5,Buildings.READY) == 0)
+	and Vars.Save4 == 1 then
+		AI.AttackNow(6,1,3)
+		AI.AttackNow(5,4,3)
+		AI.AttackNow(2,4,2)
+		AI.AttackNow(3,4,2)
+		AI.AttackNow(4,4,2)
+		Vars.Save4 = 0
+		dbg.pi(4)
+	end
+
+	if (Buildings.ExistsBuildingInArea(5,Buildings.MUSHROOMFARM,283,510,5,Buildings.READY) == 0
+	and Buildings.ExistsBuildingInArea(6,Buildings.MUSHROOMFARM,283,510,5,Buildings.READY) == 0)
+	and Vars.Save5 == 1 then
+		AI.AttackNow(6,1,3)
+		AI.AttackNow(5,4,3)
+		AI.AttackNow(2,4,2)
+		AI.AttackNow(3,4,2)
+		AI.AttackNow(4,4,2)
+		Vars.Save5 = 0
+		dbg.pi(5)
+	end
+
+
+
+end
+
+
+
+
+
+function VictoryConditionCheck()
+
+	if Game.HasPlayerLost(6) == 1 then
+	--//and Game.IsAreaGreen(443,263,30) == 1 then
+		Game.EnemyPlayersLost(1)
+		Game.DefaultGameEndCheck()
+	else
+		Game.DefaultPlayersLostCheck()
+	end
+	
+	if 	Game.HasPlayerLost(1) == 1 then
+		Game.DefaultGameEndCheck()
+	end
+
+
+end
+
+function new_game()
+
+	--// Create more StartResources for EASY
+	if Game.GetDifficulty() == 0 then
+		CreateMoreStartResourcesEASY(325,784)
+	else
+		Game.SetFightingStrength(5,150)
+		Game.SetFightingStrength(6,150)
+	end
+	--//for testing
+	--//Settlers.AddSettlers(513,516,1,Settlers.BOWMAN_03,150)
+	--//Settlers.AddSettlers(502,529,1,Settlers.GARDENER,150)
+
+		 
+	 --// SetPlayerVaribles //--
+	  
+	AI.SetPlayerVar(2, "AttackMode", 1, 2, 2) 
+	AI.SetPlayerVar(2, "AttackDelay", 40, 30, 10) 
+
+	AI.SetPlayerVar(3, "AttackMode", 1, 2, 2) 
+	AI.SetPlayerVar(3, "AttackDelay", 50, 20, 10) 
+
+	AI.SetPlayerVar(4, "AttackMode", 1, 2, 2) 
+	AI.SetPlayerVar(4, "AttackDelay", 60, 30, 10) 
+
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 100,150,300)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 150,200,150)
+
+	AI.SetPlayerVar(3, "SoldierLimitAbsolute", 100,150,300)
+	AI.SetPlayerVar(3, "SoldierLimitRelative", 150,200,150)
+	
+	AI.SetPlayerVar(4, "SoldierLimitAbsolute", 100,150,300)
+	AI.SetPlayerVar(4, "SoldierLimitRelative", 150,200,150)
+
+	AI.SetPlayerVar(5, "AttackMode", 1, 2, 2) 
+	AI.SetPlayerVar(5, "AttackDelay", 40, 30, 10) 
+	AI.SetPlayerVar(5, "DTManakopterDelay", 300, 150, 10) 
+	AI.SetPlayerVar(5, "DTAttackCheckDelay", 10, 3, 0) 
+	
+	AI.SetPlayerVar(6, "AttackMode", 1, 2, 2) 
+	AI.SetPlayerVar(6, "AttackDelay", 50, 30, 10) 
+	AI.SetPlayerVar(6, "DTManakopterDelay", 300, 150, 10) 
+	AI.SetPlayerVar(6, "DTAttackCheckDelay", 10, 3, 0) 
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	request_event(AttackCheck, Events.FIVE_TICKS)
+	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+ 
+end
+
+function register_functions()
+
+	reg_func(VictoryConditionCheck)
+	reg_func(AttackCheck)
+	reg_func(InitVar)
+
+end
+
+
+function CreateMoreStartResourcesEASY(_X, _Y)
+	
+	--// for function new_game:
+	--// Create more StartResources for EASY
+	--//if Game.GetDifficulty() == 0 then
+	--//	CreateMoreStartResourcesEASY(_X, _Y)
+	--//end
+
+    -- Create piles
+
+    Goods.AddPileEx(_X, _Y, Goods.BOARD,   8)
+    Goods.AddPileEx(_X, _Y, Goods.BOARD,   5)
+    Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+    Goods.AddPileEx(_X, _Y, Goods.STONE,   8)
+    Goods.AddPileEx(_X, _Y, Goods.SHOVEL,  8)
+    Goods.AddPileEx(_X, _Y, Goods.HAMMER,  8)
+    Goods.AddPileEx(_X, _Y, Goods.AXE,     3)
+    Goods.AddPileEx(_X, _Y, Goods.PICKAXE, 2)
+    Goods.AddPileEx(_X, _Y, Goods.SAW,     1)
+
+    -- Create settlers
+
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.BUILDER,        3)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.DIGGER,         3)
+
+    
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.SMITH,         2)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.MINEWORKER,    2)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.CARRIER,      10)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.SWORDSMAN_01,  4)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.BOWMAN_01,     3)
+	Settlers.AddSettlers(_X, _Y, 1, Settlers.SWORDSMAN_02,  8)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.BOWMAN_02,     8)
+    Settlers.AddSettlers(_X, _Y, 1, Settlers.GEOLOGIST,     2)
+            
+end

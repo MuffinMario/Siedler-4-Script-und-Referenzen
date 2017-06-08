@@ -1,0 +1,953 @@
+--------------------------------------------------------------------------------
+--
+--	TUTORIAL 1 LITE 	17.11.2009
+-- 	Vitaly.Parovishnik@gameloft.com
+--			
+--------------------------------------------------------------------------------
+	
+gTutorialStep = 1		
+
+gActiveMenu = -1
+gWantedMenu = -1	
+gWantedButton1 = -1
+gWantedButton2 = -1
+gWantedBuilding = -1
+
+gPrevTutStep = -1
+gTextStep = 1
+
+gCommandOk = 1
+
+gPrevZoomFactor = 0
+gZoomPath = 0
+
+gGeologistCheck = 0
+gCarrierMorphCount = 0
+
+gText = 1
+
+gTime1 = 0
+
+----------------------------------------------------------------------------------
+
+function DummyVictoryCheck()
+end
+	
+----------------------------------------------------------------------------------
+function OnDragBuilding(type)
+
+    if gWantedBuilding == -1 then
+       	return
+    end
+
+	if (gWantedBuilding == type) then
+       	gTutorialStep = gTutorialStep+1
+       	gWantedBuilding = -1
+    end
+end
+
+------------------------------------------------------------------------------
+
+function check_zoom ()
+
+   if Tutorial.GetCurrentZoomFactor() <= 15 then
+	unrequest_event( check_zoom, Events.TICK )
+	request_event( tutorial_main, Events.TICK )
+	gTutorialStep = gTutorialStep+1
+   end
+	
+end
+
+function wait_for_zoom ()
+	unrequest_event( tutorial_main, Events.TICK )
+	request_event( check_zoom, Events.TICK )
+
+end
+
+--------------------------------------------------------------------------------
+-- IF SETTLERTYPE IN PRODUCTION, the gTutorialStep will be increased          --
+-- WARNING: FUNCTION IS NOT OPTIMAL FOR GENERAL PURPOSE                       --
+--------------------------------------------------------------------------------
+
+function OnSettlerProduction(settlertype)  
+
+-- if Puppet_auto_controll == 12 then	
+-- This one is used for Step 36 ...
+	if gTutorialStep == 36 then
+		if (settlertype == Settlers.GEOLOGIST) then	
+			print ("Settlers.GEOLOGIST")
+			Order_Control(10) --calling Order_controll for 10 Geologistes
+		end    
+	end
+end
+
+-- Subfunction, relative to above one ... 
+-- CarrierMorphLimit will controll the maximum of Settlers changeing
+-- their job ...
+function Order_Control (CarrierMorphLimit)
+	gCarrierMorphCount = gCarrierMorphCount + 1
+	if (gCarrierMorphCount == CarrierMorphLimit) then 	-- gCarrierMorphCount : Amount of Carriers that have chanhe		                     
+		gTutorialStep = gTutorialStep + 1   			
+		gCarrierMorphCount = 0 
+		gText = 1
+	end	       	
+end
+
+-------------------------------------------------------------------------------
+
+function OnCommand(command)
+	
+	if (command == 0 )  then
+		if (gCommandOk == 1) then
+			Tutorial.ClearMarker()
+		end
+	end
+end
+
+-------------------------------------------------------------------------------
+function BuildingOnRightPlaceAndDestroyCheck(buildingtype, x,y)
+	if (Buildings.ExistsBuildingInArea(1,buildingtype,x,y,5, Buildings.UNDERCONSTRUCTION) == 0) then
+		id = Buildings.GetFirstBuilding(1,buildingtype)
+		Buildings.CrushBuilding(id)
+		gPrevTutStep = 0
+		gText = 1
+		Tutorial.ShowText("TUT_BAD_PLACE", 1)
+		gWantedButton1 = Control.BTN_MESSAGE_BOX	
+	end
+	Tutorial.DeleteWorldCursor()
+end
+
+function abs(a)
+	if (a > 0) then
+		return a
+	end
+	return -a
+end
+
+function OnBtnClick(btn)
+	if (btn == gWantedButton1) then
+		if (gTutorialStep == 3 or gTutorialStep == 6 or gTutorialStep == 7 or gTutorialStep == 9 or gTutorialStep == 11 or gTutorialStep == 33 or gTutorialStep == 39) then
+			gText = 1
+		end
+		if (gTutorialStep == 45 or gTutorialStep == 50) then
+			gTutorialStep = gTutorialStep - 4
+		else
+			gTutorialStep = gTutorialStep + 1
+		end
+		gWantedButton1 = -1
+		gWantedButton2 = -1
+	end
+	if (btn == gWantedButton2) then
+		gTutorialStep = gTutorialStep + 2
+		gWantedButton2 = -1
+		gWantedButton1 = -1
+	end
+	if (gTutorialStep == 36 and btn == Control.BTN_SPECIALIST_UP) then
+		gGeologistCheck = gGeologistCheck +1
+		if (gGeologistCheck == 10) then
+			Tutorial.DisableControls(
+				Control.BTN_SPECIALIST_UP,
+				Control.BTN_SETTLERS,
+				Control.BTN_SETTLERS_SPECIALISTS,
+				Control.BTN_SPECIALIST1
+				)
+			Tutorial.SetButtonMarker(Control.BTN_SETTLERS_SPECIALISTS,0)
+			Tutorial.SetButtonMarker(Control.BTN_SPECIALIST1,0)
+		end
+	end
+	if (btn == Control.BTN_BUILDINFO_NO) then
+		if (gTutorialStep == 10) then
+			gText = 1
+		end
+		gTutorialStep = gTutorialStep - 3
+		gWantedButton1 = -1
+		gWantedButton2 = -1
+	end	
+end
+
+-------------------------------------------------------------------------------
+--
+--	main tutorial function
+--
+--------------------------------------------------------------------------------
+function tutorial_main()
+
+-- Code which executes constantly during tutorial step and monitors for necessary changes
+	gTime1 = gTime1 + 1
+
+--	print ("TutorialStep = ", gTutorialStep)
+	
+	if (gTutorialStep == 1) then
+		gTime2 = gTime1
+		
+	elseif (gTutorialStep == 2 ) then
+		if (gTime1 - gTime2 >= 30) then --1.5 sec
+			gTutorialStep = gTutorialStep + 1
+			gTime1 = 0
+			gTime2 = 0
+			gWantedButton2 = -1
+			gWantedButton1 = -1
+		end
+	end
+	
+	if (gTutorialStep == 1 ) then
+		gTutorialStep = gTutorialStep + 1
+		
+	elseif (gTutorialStep == 4 ) then
+		if ((Map.PointIsOnScreen(156,144) == 1) or (Map.PointIsOnScreen(203,137) == 1)
+			or (Map.PointIsOnScreen(160, 103) == 1) or (Map.PointIsOnScreen(194, 172) == 1)
+			or (Map.PointIsOnScreen(151, 120) == 1) or (Map.PointIsOnScreen(214, 170) == 1) 
+			or (Map.PointIsOnScreen(169, 158) == 1) or (Map.PointIsOnScreen(183, 107) == 1)) then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 5) then
+		zoomFactor = Tutorial.GetCurrentZoomFactor()
+		gZoomPath = gZoomPath + abs(zoomFactor - gPrevZoomFactor)
+		gPrevZoomFactor = zoomFactor
+		if (gZoomPath > 300000) then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 10) then
+		if (Buildings.Amount( Game.LocalPlayer(), Buildings.WOODCUTTERHUT, Buildings.UNDERCONSTRUCTION) > 0) or
+			(Buildings.Amount( Game.LocalPlayer(), Buildings.WOODCUTTERHUT, Buildings.READY) > 0) then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 11) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.WOODCUTTERHUT, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 2
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 12) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.WOODCUTTERHUT, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 17) then
+		if Buildings.Amount( Game.	LocalPlayer(), Buildings.SAWMILL, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 22) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.STONECUTTERHUT, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+
+	elseif (gTutorialStep == 27) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.HUNTERHUT, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 32) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.FISHERHUT, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 37) then
+		if Settlers.Amount( Game.LocalPlayer(), Settlers.GEOLOGIST ) >= 10 then
+			Map.SetScreenPos(172,127)
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 38) then
+		if (Settlers.AmountInArea( Game.LocalPlayer(), Settlers.GEOLOGIST,159,116,2) > 0) or
+			(Settlers.AmountInArea( Game.LocalPlayer(), Settlers.GEOLOGIST,161,122,2) > 0) or
+			(Settlers.AmountInArea( Game.LocalPlayer(), Settlers.GEOLOGIST,155,108,2) > 0) then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 39) then
+		if (Map.DecoObjectAmountInArea(Objects.SHIELD_COAL1, Objects.SHIELD_COAL3, 140, 110, 4) > 2) then
+			gTutorialStep = gTutorialStep + 2
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 40) then
+		if (Map.DecoObjectAmountInArea(Objects.SHIELD_COAL1, Objects.SHIELD_COAL3, 140, 110, 4) > 2) then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+	
+	elseif (gTutorialStep == 45) then
+		if (Buildings.Amount( Game.LocalPlayer(), Buildings.COALMINE, Buildings.UNDERCONSTRUCTION) > 0) then
+			BuildingOnRightPlaceAndDestroyCheck(Buildings.COALMINE, 140,110)
+		end
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.COALMINE, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 50) then
+		if (Buildings.Amount( Game.LocalPlayer(), Buildings.GOLDMINE, Buildings.UNDERCONSTRUCTION) > 0) then
+			BuildingOnRightPlaceAndDestroyCheck(Buildings.GOLDMINE, 135,116)
+		end
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.GOLDMINE, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end	
+		
+	elseif (gTutorialStep == 55) then
+		if Goods.Amount( Game.LocalPlayer(), Goods.GOLDBAR) >= 2 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+		
+	elseif (gTutorialStep == 60) then
+		if Buildings.Amount( Game.LocalPlayer(), Buildings.EYECATCHER03, Buildings.READY) > 0 then
+			gTutorialStep = gTutorialStep + 1
+			gText = 1
+		end
+
+	end
+	
+	if (gPrevTutStep == gTutorialStep) then
+		return
+	end
+
+-- The code below executes only once for each tutorial step
+
+-------------------------------------------------------------------------------
+--
+--	Introduce
+--
+--------------------------------------------------------------------------------
+
+	if gTutorialStep == 1 then
+		Tutorial.ShowText()
+		
+	elseif gTutorialStep == 2 then
+		Tutorial.DisableControlsExcept(
+			Control.BTN_MESSAGES, 
+			Control.BTN_MESSAGE_BOX,
+			Control.BTN_RESOURCE_BAR,
+			Control.BTN_MINIMAP,
+			Control.BTN_COMPRESS_TIME,
+			Control.BTN_BUILDINFO_BUILD,
+			Control.BTN_BUILDINFO_YES,
+			Control.BTN_BUILDINFO_NO
+		)
+		gPrevZoomFactor = Tutorial.GetCurrentZoomFactor()
+		
+	elseif gTutorialStep == 3 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_000", 1)
+			gText = 0
+		end	
+		gWantedButton1 = Control.BTN_MESSAGE_BOX
+		
+-------------------------------------------------------------------------------
+--
+--	Explore the land
+--
+--------------------------------------------------------------------------------
+	
+	elseif gTutorialStep == 4 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_001")
+			gText = 0
+		end
+
+-------------------------------------------------------------------------------
+--
+--	Zoom
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 5 then
+		Tutorial.EnableControls(Control.BTN_ZOOM)
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_002")
+			gText = 0
+		end
+		Tutorial.SetButtonMarker (Control.BTN_ZOOM, 1)
+
+-------------------------------------------------------------------------------
+--
+--	Start Building
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 6 then
+		Tutorial.SetButtonMarker(Control.BTN_ZOOM, 0)
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_003", 1)
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_MESSAGE_BOX
+
+-------------------------------------------------------------------------------
+--
+--	Build WOODCUTTERHUT
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 7 then
+		if (gText == 1) then
+			Map.SetScreenPos(191,141)
+			Tutorial.SetZoom(16)
+			Tutorial.ShowText("TUT_01_004")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS, 
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING1
+		)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.WOODCUTTERHUT)
+		
+	elseif gTutorialStep == 8 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_005")
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILD_BASIC
+		gText = 1
+		
+	elseif gTutorialStep == 9 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_006")
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDING1
+		
+	elseif gTutorialStep == 10 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		
+	elseif gTutorialStep == 11 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_007")
+			gText = 0
+		end
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC,0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING1
+		)
+		gWantedButton1 = Control.BTN_MESSAGE_BOX
+		
+	elseif gTutorialStep == 12 then
+		Tutorial.SetButtonMarker(Control.BTN_COMPRESS_TIME, 1)
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_008")
+			gText = 0
+		end
+		
+-------------------------------------------------------------------------------
+--
+--	Build SAWMILL
+--
+--------------------------------------------------------------------------------		
+		
+	elseif gTutorialStep == 13 then
+		Tutorial.SetButtonMarker(Control.BTN_COMPRESS_TIME, 0)
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_009")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING2
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.SAWMILL)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 14 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_BASIC
+		
+	elseif gTutorialStep == 15 then
+		gWantedButton1 = Control.BTN_BUILDING2
+		gText = 1
+		
+	elseif gTutorialStep == 16 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 17 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC,0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING2
+		)
+
+-------------------------------------------------------------------------------
+--
+--	Build STONECUTTERHUT
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 18 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_010")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING0
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.STONECUTTERHUT)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 19 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_BASIC	
+		
+	elseif gTutorialStep == 20 then
+		gWantedButton1 = Control.BTN_BUILDING0
+		gText = 1
+		
+	elseif gTutorialStep == 21 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 22 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_BASIC,0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_BASIC, 
+			Control.BTN_BUILDING0
+		)
+
+-------------------------------------------------------------------------------
+--
+--	Build HUNTERHUT
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 23 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_011")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_FOOD, 
+			Control.BTN_BUILDING0
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_FOOD, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.HUNTERHUT)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 24 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_FOOD
+		
+	elseif gTutorialStep == 25 then
+		gWantedButton1 = Control.BTN_BUILDING0
+		gText = 1
+		
+	elseif gTutorialStep == 26 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 27 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_FOOD,0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_FOOD, 
+			Control.BTN_BUILDING0
+		)
+		
+-------------------------------------------------------------------------------
+--
+--	Build FISHERHUT
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 28 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_012")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_FOOD, 
+			Control.BTN_BUILDING1
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_FOOD, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.FISHERHUT)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 29 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_FOOD	
+		
+	elseif gTutorialStep == 30 then
+		gWantedButton1 = Control.BTN_BUILDING1
+		gText = 1
+		
+	elseif gTutorialStep == 31 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 32 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_FOOD,0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_FOOD, 
+			Control.BTN_BUILDING1
+		)
+		
+-------------------------------------------------------------------------------
+--
+--	Build 10 GEOLOGIST
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 33 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_013")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_SETTLERS,
+			Control.BTN_SETTLERS_SPECIALISTS,
+			Control.BTN_SPECIALIST1,
+			Control.BTN_SPECIALIST_UP
+		)
+		Tutorial.SetButtonMarker(Control.BTN_SETTLERS,1)
+		Tutorial.SetButtonMarker(Control.BTN_SETTLERS_SPECIALISTS,1)
+		gWantedButton1 = Control.BTN_SETTLERS
+		
+	elseif gTutorialStep == 34 then		
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_014")
+			gText = 0
+		end
+		Tutorial.SetButtonMarker(Control.BTN_SETTLERS,0)
+		gWantedButton1 = Control.BTN_SETTLERS_SPECIALISTS
+		
+	elseif gTutorialStep == 35 then
+		Tutorial.SetButtonMarker(Control.BTN_SPECIALIST1,1)
+		gWantedButton1 = Control.BTN_SPECIALIST1
+		
+-------------------------------------------------------------------------------
+--
+--	Sent Geologistes to hill
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 37 then
+		Tutorial.DisableControls(
+			Control.BTN_SETTLERS,
+			Control.BTN_SETTLERS_SPECIALISTS,
+			Control.BTN_SPECIALIST1
+		)
+		
+	elseif gTutorialStep == 38 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_015")
+			gText = 0
+		end
+		
+-------------------------------------------------------------------------------
+--
+--	Geologistes finded resources
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 39 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_016")
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_MESSAGE_BOX
+		
+	elseif gTutorialStep == 40 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_017")
+			gText = 0
+		end
+		
+-------------------------------------------------------------------------------
+--
+--	Build COALMINE
+--
+--------------------------------------------------------------------------------
+	
+	elseif gTutorialStep == 41 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_018")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING0
+		)
+		Tutorial.SetWorldCursor(140,110)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.COALMINE)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 42 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_METAL	
+		
+	elseif gTutorialStep == 43 then
+		gWantedButton1 = Control.BTN_BUILDING0
+		gText = 1
+		
+	elseif gTutorialStep == 44 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 45 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING0
+		)
+		
+-------------------------------------------------------------------------------
+--
+--	Build GOLDMINE
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 46 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_019")
+			gText = 0
+		end
+		Tutorial.SetWorldCursor(135,116)
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING2
+		)		
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.GOLDMINE)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 47 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_METAL
+		
+	elseif gTutorialStep == 48 then
+		gWantedButton1 = Control.BTN_BUILDING2
+		gText = 1
+		
+	elseif gTutorialStep == 49 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 50 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING2
+		)
+	
+-------------------------------------------------------------------------------
+--
+--	Build SMELTGOLD
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 51 then
+		if (gText == 1) then
+			Map.SetScreenPos(191,141)
+			Tutorial.ShowText("TUT_01_020")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING1
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.SMELTGOLD)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 52 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_METAL
+		
+	elseif gTutorialStep == 53 then
+		gWantedButton1 = Control.BTN_BUILDING1
+		gText = 1
+		
+	elseif gTutorialStep == 54 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 55 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_METAL, 0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_METAL, 
+			Control.BTN_BUILDING1
+		)
+		
+-------------------------------------------------------------------------------
+--
+--	Build EYECATCHER03
+--
+--------------------------------------------------------------------------------
+
+	elseif gTutorialStep == 56 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_021")
+			gText = 0
+		end
+		Tutorial.EnableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_EYECATCHERS, 
+			Control.BTN_BUILDING0
+		)
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 1)
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_EYECATCHERS, 1)
+		Tutorial.SetBuildingButtonMarker(Buildings.EYECATCHER03)
+		gWantedButton1 = Control.BTN_BUILDINGS
+		
+	elseif gTutorialStep == 57 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILDINGS, 0)
+		gWantedButton1 = Control.BTN_BUILD_EYECATCHERS
+		
+	elseif gTutorialStep == 58 then
+		gWantedButton1 = Control.BTN_BUILDING0
+		gText = 1
+		
+	elseif gTutorialStep == 59 then
+		if (gText == 1) then
+			Tutorial.ShowText()
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_BUILDINFO_YES
+		
+	elseif gTutorialStep == 60 then
+		Tutorial.SetButtonMarker(Control.BTN_BUILD_EYECATCHERS, 0)
+		Tutorial.SetBuildingButtonMarker(Buildings.NO_BUILDING)
+		Tutorial.DisableControls(
+			Control.BTN_BUILDINGS,
+			Control.BTN_BUILD_EYECATCHERS, 
+			Control.BTN_BUILDING0
+		)
+	
+-------------------------------------------------------------------------------
+--
+--	Congratulations! Your mission is complete.
+--
+--------------------------------------------------------------------------------
+		
+	elseif gTutorialStep == 61 then
+		if (gText == 1) then
+			Tutorial.ShowText("TUT_01_022", 1)
+			gText = 0
+		end
+		gWantedButton1 = Control.BTN_MESSAGE_BOX
+		
+	elseif gTutorialStep == 62 then
+		Tutorial.Won()
+		gTutorialStep = gTutorialStep + 1
+		
+	elseif gTutorialStep == 63 then
+		Tutorial.DisableControlsExcept()
+		gTutorialStep = gTutorialStep + 1
+		
+	end
+
+	gPrevTutStep = gTutorialStep
+end
+
+function OnFirstTickOfNewOrLoadedGame()
+	Tutorial.RWM(1)
+end
+
+--------------------------------------------------------------------------------
+--
+--	function which is called when a new map started
+--
+--------------------------------------------------------------------------------
+function new_game()
+	request_event( tutorial_main, Events.TICK )
+	request_event( OnCommand, Events.COMMAND )
+	request_event( OnDragBuilding, Events.DRAG_BUILDING )
+	request_event( OnSettlerProduction, Events.SETTLER_CHANGE_TYPE)
+	request_event( DummyVictoryCheck, Events.VICTORY_CONDITION_CHECK )
+	request_event( OnBtnClick, Events.BTNCLICK )
+	request_event( OnFirstTickOfNewOrLoadedGame, Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME )
+end
+
+--------------------------------------------------------------------------------
+--
+--	register functions which could request Events
+--
+--------------------------------------------------------------------------------
+
+function register_functions()
+	reg_func( DummyVictoryCheck )
+	reg_func( tutorial_main )
+	reg_func( OnDragBuilding )
+	reg_func( OnSettlerProduction )
+	reg_func( check_zoom )
+	reg_func( OnCommand )
+	reg_func( OnBtnClick )
+	reg_func( OnFirstTickOfNewOrLoadedGame )
+end
+

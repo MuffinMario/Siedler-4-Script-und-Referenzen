@@ -1,0 +1,42 @@
+-- =============================================================================
+-- dark12
+-- TESTED SUCCESSFULLY WITH 0.90.545 ANDI
+-- =============================================================================
+
+function InitVar()
+
+--// minutes vor attack
+	Vars.Save1 = 40 +  Game.Random(5)
+end
+
+function DakrTribeAttack()
+--//DT attack
+	if Game.Time() == Vars.Save1 then
+		AI.AttackNow(4, 1, 1)
+		Vars.Save1 = Vars.Save1 + 40 +  Game.Random(5)
+	end
+end
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// Add Port
+
+	request_event(DakrTribeAttack, Events.FIVE_TICKS)
+	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+	ShowEnemies_new_game()
+end
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {256,276})
+	ShowEnemies_register_functions()
+
+	reg_func(DakrTribeAttack) 
+	reg_func(InitVar)
+end

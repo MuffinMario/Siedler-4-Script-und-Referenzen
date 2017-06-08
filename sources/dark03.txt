@@ -1,0 +1,49 @@
+-- =============================================================================
+--
+-- Player1 wins when he owns a certain circle on the map.
+-- TESTED SUCCESSFULLY WITH 90.545 ANDI 17.12.00
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- Victory condition check: Player 1 owns defined circle? 
+-- -----------------------------------------------------------------------------
+
+function VictoryConditionCheck()
+
+	if Game.IsAreaGreen( 266, 285, 28) == 1 then
+		Game.EnemyPlayersLost(1) 
+	else
+		Game.DefaultPlayersLostCheck()
+	end
+
+	Game.DefaultGameEndCheck()
+
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--//DISABLE THE PRODUCTION OF SHAMANS AND DARK GARDENERS	
+	AI.DarkTribeUseShamans(2,0)
+
+	--//SetPlayerVar//--
+	--//DTMaxFarmsPerHour//--
+	AI.SetPlayerVar(2, "DTMaxFarmsPerHour", 6, 9, 12)
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	ShowEnemies_new_game()
+end
+
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+end

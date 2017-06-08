@@ -1,0 +1,32 @@
+-- =============================================================================
+-- maya01
+-- TESTED SUCCESSFULLY WITH 0.90.545 ANDI
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// add donkey//--
+
+	Settlers.AddSettlers(130,299, 1, Settlers.DONKEY, 1 )
+
+	--// SetPlayerVaribles //--
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(2, "AttackDelay", 45, 30, 10)
+
+	--// SOLDIERLIMIT//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 100,180,400)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 100,130,150)
+
+	ShowEnemies_new_game()
+end
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+end

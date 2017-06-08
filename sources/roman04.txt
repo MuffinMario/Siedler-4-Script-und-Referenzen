@@ -1,0 +1,31 @@
+--------------------------------------------------------------------------------
+--
+--	function which is called when a new map started
+--
+--------------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+	--// AttackMode = 0 //--
+	AI.SetPlayerVar(2, "AttackMode", 0, 2, 2) 
+	AI.SetPlayerVar(2, "AttackDelay", 500, 50, 10) 
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 50,100,300)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 50,50,150)
+
+	ShowEnemies_new_game()
+end
+
+--------------------------------------------------------------------------------
+--
+--		register functions which could request Events
+--
+--------------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+end

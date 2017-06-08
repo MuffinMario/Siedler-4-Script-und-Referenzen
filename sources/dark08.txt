@@ -1,0 +1,178 @@
+-- =============================================================================
+-- dark-08
+-- Player wins when one of his settlers discovered a certain circle on the map
+-- TESTED OK 0.90.456 Andi
+-- TIP PRIEST MUST GO TO THE NORTH AND SMELT THE SNOW
+-- ABKLEMMEN DER WINCONDITION???
+-- =============================================================================
+
+--// time to win
+
+gTimeOut = 150	
+
+
+
+
+function InitVar ()
+
+	--// first time of "enemy landing" in the  UPPER left corner
+	Vars.Save1 = 2
+
+	--// set time period in minutes here for ships from the  UPPER left corner
+	Vars.Save2 = 2
+
+	--// first time of "enemy landing" on the left SIDE
+	Vars.Save3 = 0
+
+
+	--// set time period in minutes here for ships from the left SIDE
+	Vars.Save4 = 2
+		
+	--// flag for showing the text one time
+	Vars.Save5 = 0
+	
+	--// flag for toggeling the direction for the ships of the upper left corner
+	Vars.Save6 = 0
+	
+
+	--// delete Eycatcher because the player can get gold for the big temple, when he crush it
+
+--	Buildings.Delete( Buildings.GetFirstBuilding(1,Buildings.EYECATCHER03),2)
+--	Buildings.Delete( Buildings.GetFirstBuilding(1,Buildings.EYECATCHER02),2)
+end
+
+
+-- -----------------------------------------------------------------------------
+-- Activate the clock
+-- -----------------------------------------------------------------------------
+
+function TurnOnTheClock()
+	Game.ShowClock(9000)
+end
+
+-- -----------------------------------------------------------------------------
+-- THE PIRATES RULEZ
+-- -----------------------------------------------------------------------------
+
+function CrossingPirates()
+
+--//  UPPER left
+	if Game.Time() ==  Vars.Save1 then
+    	Vars.Save1 = Vars.Save1 + Vars.Save2
+    	Vehicles.AddVehicle(110, 6, 2, Vehicles.WARSHIP, 5,96, 1)
+    	--Vehicles.AddVehicle(116, 7, 2, Vehicles.WARSHIP, 5,96, 1)
+    	--Vehicles.AddVehicle(103, 7, 2, Vehicles.WARSHIP, 5,96, 1)
+    	if Vars.Save6 == 0 then
+			--// squad move to the south
+			AI.NewSquad(2, AI.CMD_MOVE_AND_VANISH, 613, 700)
+			Vars.Save6 = Vars.Save6 + 1
+		else
+			--// squad move to the east
+			AI.NewSquad(2, AI.CMD_MOVE_AND_VANISH, 700, 641)
+			Vars.Save6 = Vars.Save6 - 1
+		end
+  	end
+
+--// LEFT SIDE
+	if Game.Time() ==  Vars.Save3 then
+    	Vars.Save3 = Vars.Save3 + Vars.Save4
+    	Vehicles.AddVehicle(8, 247, 2, Vehicles.WARSHIP, 5,96, 1)
+    	--Vehicles.AddVehicle(8, 242, 2, Vehicles.WARSHIP, 5,96, 1)
+    	--Vehicles.AddVehicle(8, 255, 2, Vehicles.WARSHIP, 5,96, 1)
+    	--// squad move to the east
+    	AI.NewSquad(2, AI.CMD_MOVE_AND_VANISH, 700, 641)
+  	end
+  	
+-- -----------------------------------------------------------------------------
+-- Countdown
+-- -----------------------------------------------------------------------------	
+--// Zeitansage 10 min vor schluß //--
+	
+	if Game.Time() >= (gTimeOut - 10) and  Vars.Save5 == 3 then
+		Game.ShowText("TIME_REMAIN_01")
+		Vars.Save5 = 4
+	end
+
+--// Zeitansage 20 min vor schluß //--
+	if Game.Time() >= (gTimeOut - 20) and  Vars.Save5 == 2 then
+		Game.ShowText("TIME_REMAIN_02")
+		Vars.Save5 = 3
+	end
+
+--// Zeitansage nach 3/4 der Zeit//--
+	if Game.Time() >= (gTimeOut - 45) and  Vars.Save5 == 1 then
+		Game.ShowText("TIME_REMAIN_03")
+		Vars.Save5 = 2
+	end
+--// Zeitansage nach Hälfte der Zeit//--
+	if Game.Time() >= (gTimeOut - 90) and  Vars.Save5 == 0 then
+		Game.ShowText("TIME_REMAIN_04")
+		Vars.Save5 = 1
+	end
+end
+
+
+
+-- -----------------------------------------------------------------------------
+-- Victory condition check: Player wins when one of his settlers discovered a 
+-- certain circle on the map
+-- -----------------------------------------------------------------------------
+ 
+function VictoryConditionCheck()
+	
+	
+
+  	if Settlers.AmountInArea(1, Settlers.PRIEST, 594, 155, 60) >= 1 then
+    		Game.EnemyPlayersLost(1)
+    else
+    		Game.DefaultPlayerLostCheck(1)
+  	end
+  	
+  	  
+-- -----------------------------------------------------------------------------
+-- Game lost until time out 
+-- -----------------------------------------------------------------------------
+	
+	--// beenden des Spiels bei überschreitung der zeit //--
+		
+	if Game.Time() >=  gTimeOut then  
+		Game.EnemyPlayersLost(2)
+	end
+
+  
+  	Game.DefaultGameEndCheck("DARKTRIBE_SCRIPT_EIGHT_01","DARKTRIBE_SCRIPT_EIGHT_02")
+  
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	request_event(CrossingPirates,Events.FIVE_TICKS)
+	request_event(TurnOnTheClock,Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
+	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {594,155})
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+	reg_func(CrossingPirates)
+	reg_func(TurnOnTheClock)
+	reg_func(InitVar)
+end

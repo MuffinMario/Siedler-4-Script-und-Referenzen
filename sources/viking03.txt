@@ -1,0 +1,21 @@
+-- ===============
+-- viking 3
+-- ===============
+function new_game()
+	Goods.AddPileEx(261,360, Goods.GOLDBAR, 8)
+	Goods.AddPileEx(261,361, Goods.GOLDBAR, 5)
+	Goods.AddPileEx(262,361, Goods.GOLDBAR, 6)
+	Goods.AddPileEx(260,356, Goods.GOLDBAR, 8)
+	Goods.AddPileEx(263,362, Goods.GOLDBAR, 7)
+	Goods.AddPileEx(261,358, Goods.GOLDBAR, 8)
+
+	ShowEnemies_new_game()
+end
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+end
+

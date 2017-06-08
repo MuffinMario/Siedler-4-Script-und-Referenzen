@@ -1,0 +1,125 @@
+-- =============================================================================
+-- maya 02
+-- Enemy soldiers are placed in certain periods at a coast near to the player's 
+-- initial area there is a bridgehead from the enemy
+-- 
+-- =============================================================================
+-- -----------------------------------------------------------------------------
+-- Init Variables
+-- -----------------------------------------------------------------------------
+
+function InitVar()
+
+	--// toggling flag for one-time call
+	Vars.Save1 = 1 
+
+	--// set time period in minutes here
+	Vars.Save6 = 20 +  Game.Random(5)
+	
+	--// first time of "enemy landing"  
+	Vars.Save2 =20 +  Game.Random(5)
+
+	--// tickcounter
+	Vars.Save7  = 0
+	
+	Vars.Save9 = 1
+	
+	if Game.GetDifficulty() == 0 then	
+		--// counters for # of soldiers for EASY
+		Vars.Save3 = 1
+		Vars.Save4 = 1 
+		Vars.Save5 = 1
+		else
+		--// counters for # of soldiers for NORMAL
+		Vars.Save3 = 2
+		Vars.Save4 = 2 
+		Vars.Save5 = 1
+		end
+
+end
+
+--// -----------------------------------------------------------------------------
+--// Generate Ship & Enemy soldiers every Vars.Save2 min. 
+--// With growing number of soldiers
+--// -----------------------------------------------------------------------------
+
+function GenerateEnemies()
+--// -----------------------------------------------------------------------------
+--// switch ship on and deliever soldiers
+--// -----------------------------------------------------------------------------
+  if Buildings.ExistsBuildingInArea(2,Buildings.GUARDTOWERBIG,352,392,5) == 0 
+  and Buildings.ExistsBuildingInArea(2,Buildings.GUARDTOWERBIG,363,389,5) == 0 then 
+ 
+	  Vars.Save9 = 0
+  end
+	if Game.Time() == Vars.Save2  and Vars.Save1 == 1 and Vars.Save9 == 1 then
+		Vehicles.AddVehicle(297, 305, 2, Vehicles.WARSHIP, 5,80, 1)
+		AI.NewSquad(2, AI.CMD_MOVE_AND_VANISH, 345,368)
+    		Vars.Save1 = 2
+    		Vars.Save2 = Vars.Save2 + Vars.Save6
+    		Vars.Save6 = 20 +  Game.Random(5)
+
+  	end
+	
+--//FAKE: ship returns to vikingsettlement
+	if Vehicles.AmountInArea(2,Vehicles.WARSHIP,345,363, 1)== 1 and Vars.Save1  == 2 then
+		Vars.Save1  = 3
+	end
+	
+--// wait some ticks
+	if Vars.Save1  == 3 then
+		Vars.Save7 = Vars.Save7 + 1
+	end
+	
+	if Vars.Save1  == 3 and Vars.Save7 == 44  then
+		Vehicles.AddVehicle(345,368 , 2, Vehicles.WARSHIP, 2,80, 1)
+		AI.NewSquad(2, AI.CMD_MOVE_AND_VANISH, 297, 305)
+		Vars.Save1 = 1
+		Vars.Save7  = 0
+--// Warrios leave the ship and attack the player
+		Settlers.AddSettlers(354, 381, 2, Settlers.SWORDSMAN_01, Vars.Save3)
+    		Settlers.AddSettlers(353, 382, 2, Settlers.BOWMAN_02, Vars.Save4)
+    		Settlers.AddSettlers(350, 382, 2, Settlers.AXEWARRIOR_02, Vars.Save5)
+    		AI.NewSquad(2, AI.CMD_SUICIDE_MISSION )
+    		
+--// increase number of soldiers for next delievery
+		if Game.GetDifficulty() == 0 then	
+    			Vars.Save3 = Vars.Save3 + 1
+    			Vars.Save4 = Vars.Save4 + 1
+    			Vars.Save5 = Vars.Save5 + 1
+    		else
+    			Vars.Save3 = Vars.Save3 + 2
+    			Vars.Save4 = Vars.Save4 + 2
+    			Vars.Save5 = Vars.Save5 + 1
+    		end
+	end 
+
+
+
+   
+end
+
+
+--// -----------------------------------------------------------------------------
+function new_game()
+	Map.
+	request_event(GenerateEnemies, Events.TICK)
+	request_event(InitVar,Events.FIRST_TICK_OF_NEW_GAME)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	tinsert(gShowEnemies_Targets, {357,390})
+	ShowEnemies_register_functions()
+
+	reg_func(GenerateEnemies)
+	reg_func(InitVar)
+end

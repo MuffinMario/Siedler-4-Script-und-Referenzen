@@ -1,0 +1,87 @@
+-- =============================================================================
+-- dark-01
+-- A gift from the lady of the lake:  
+-- Did player build 12 Roman EYECATCHER 10 (Waterthingy) -> generate reward at lake
+-- NOT FINISHED:  SOUND MISSING. FUNCTION OK, TESTED WITH 0.90.538 
+-- WE CAN BUILD THE WATERTHINGY IN THE NEAR OF THE LAKE
+-- =============================================================================
+
+-- -----------------------------------------------------------------------------
+-- Did player build 12 Roman EYECATCHER 10 (Waterthingy) -> generate reward at lake
+-- -----------------------------------------------------------------------------
+
+function WaterThingyCheck()
+
+	if Buildings.Amount(1, Buildings.EYECATCHER10, Buildings.READY) == 12 then
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 371, 140, 0)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 370, 144, 5)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 368, 139, 10)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 373, 142, 3)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 372, 145, 8)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 367, 140, 12)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 374, 140, 6)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 378, 154, 2)
+
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 371, 147, 15)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 372, 154, 1)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 367, 136, 4)
+		Effects.AddEffect(Effects.RMAGIC_GIFTOFGOD, Sounds.GIFT, 364, 136, 7)
+
+		Game.ShowText("DARKTRIBE_SCRIPT_ONE_01")
+		Goods.AddPileEx(371, 140, Goods.GOLDBAR, 5)
+		Goods.AddPileEx(370, 144, Goods.GOLDBAR, 8)
+		Goods.AddPileEx(368, 139, Goods.GOLDBAR, 6)
+		Goods.AddPileEx(373, 142, Goods.IRONBAR, 8)
+		Goods.AddPileEx(372, 145, Goods.GOLDBAR, 7)
+		Goods.AddPileEx(367, 140, Goods.GOLDBAR, 8)
+		Goods.AddPileEx(374, 140, Goods.IRONBAR, 8)
+		Goods.AddPileEx(378, 154, Goods.IRONBAR, 8)
+
+		Goods.AddPileEx(371, 147, Goods.IRONBAR, 4)
+		Goods.AddPileEx(372, 154, Goods.GOLDBAR, 5)
+		Goods.AddPileEx(367, 136, Goods.IRONBAR, 5)
+		Goods.AddPileEx(364, 136, Goods.GOLDBAR, 7)
+
+		unrequest_event(WaterThingyCheck, Events.FIVE_TICKS)
+	end
+
+end
+
+-- -----------------------------------------------------------------------------
+-- The "new_game" function (will be called when a new game starts)
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// for testing
+	Goods.AddPileEx(372, 154, Goods.GOLDORE, 6)
+	Goods.AddPileEx(372, 156, Goods.GOLDORE, 6)
+
+	--// SetPlayerVaribles //--
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(2, "AttackDelay", 70, 60, 10) 
+
+	--// Attack Mode//--
+	AI.SetPlayerVar(2, "AttackMode", 1, 2, 0) 
+
+	--// SOLDIERLIMIT//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 50,80,100)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 100,120,150)
+
+	request_event(WaterThingyCheck, Events.FIVE_TICKS)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+-- The "register_functions" function (registers functions, which requests events)
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+
+	reg_func(WaterThingyCheck)
+end

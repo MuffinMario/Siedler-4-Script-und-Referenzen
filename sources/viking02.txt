@@ -1,0 +1,25 @@
+-- ===============
+-- viking 2
+-- ===============
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(2, "AttackDelay", 60, 40, 10) 
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 200,250,400)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 100,120,150)
+
+	ShowEnemies_new_game()
+end
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+end
+
+

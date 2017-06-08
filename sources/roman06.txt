@@ -1,0 +1,57 @@
+-- ================================================
+-- roman-03
+-- Player wins when he owns two circles on the map.
+-- TESTED SUCCESSFULLY WITH 0.90.545 ANDI
+-- ================================================
+
+function VictoryConditionCheck()
+
+if Game.IsAreaOwned(1,518,199,9) == 1 and Game.IsAreaOwned(1,492,412,10) == 1 then
+Game.EnemyPlayersLost(1)
+else
+Game.DefaultPlayersLostCheck()
+end
+
+
+Game.DefaultGameEndCheck("ROMANS_SCRIPT_THREE_01","ROMANS_SCRIPT_THREE_02")
+
+end
+
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// AttackMode = 0 //--
+	AI.SetPlayerVar(2, "AttackMode", 1, 2, 2) 
+
+	--// Attack Delay //--
+	AI.SetPlayerVar(2, "AttackDelay", 60, 40, 10) 
+
+	--// SOLDIERLIMITRELATIVE//--
+
+	--//Vikinger//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 100,120,400)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 80,120,150)
+
+	--//Maya//--
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 60,100,400)
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 80,100,150)
+
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	ShowEnemies_new_game()
+end
+
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {492,411})
+	tinsert(gShowEnemies_Targets, {518,199})
+	ShowEnemies_register_functions()
+
+	reg_func(VictoryConditionCheck)
+end

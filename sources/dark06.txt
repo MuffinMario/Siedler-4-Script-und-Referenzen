@@ -1,0 +1,25 @@
+-- ===============
+-- dark06
+-- ===============
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 120,150,150)
+	AI.SetPlayerVar(3, "SoldierLimitRelative", 120,150,150)
+
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 150,200,300)
+	AI.SetPlayerVar(3, "SoldierLimitAbsolute", 150,200,300)
+
+	ShowEnemies_new_game()
+end
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	ShowEnemies_register_functions()
+end
+
+

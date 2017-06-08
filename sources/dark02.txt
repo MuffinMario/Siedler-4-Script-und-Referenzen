@@ -1,0 +1,87 @@
+-- =============================================================================
+-- Dark02
+-- Destroy two mushroomfarms
+-- =============================================================================
+
+
+-- -----------------------------------------------------------------------------
+-- Check: Did Player destroy two MUSHROOMFARMS? 
+-- Then the Mayas will be enemeys 
+-- -----------------------------------------------------------------------------
+
+function MushroomfarmsDestroyedAndMayaAttackCheck()
+	if Statistic.MushroomFarmsDestroyed(1) >=2 then
+
+		if Game.GetDifficulty() == 0 then	
+			AI.AttackNow(2, 1, 2)
+		else
+			AI.AttackNow(2, 1, 4)
+		end
+
+		Game.ShowText("DARKTRIBE_SCRIPT_TWO_01")
+		unrequest_event(MushroomfarmsDestroyedAndMayaAttackCheck, Events.FIVE_TICKS)
+	end
+end
+
+-- -----------------------------------------------------------------------------
+-- Victory condition check: Player destroyed Mayas
+-- -----------------------------------------------------------------------------
+
+function VictoryConditionCheck()
+
+	Game.DefaultPlayersLostCheck()
+	
+	if (Buildings.Amount(3, Buildings.MUSHROOMFARM, Buildings.READY) <= 1) then
+		Game.EnemyPlayersLost(1)
+		
+	else
+		Game.DefaultPlayerLostCheck(1)
+	end
+
+	Game.DefaultGameEndCheck()
+
+end
+
+-- -----------------------------------------------------------------------------
+
+function new_game()
+	--// SetPlayerVaribles //--
+
+	--// ATTACK DELAY //--
+	--//DARK TRIBE//--
+	AI.SetPlayerVar(3, "AttackDelay", 70, 50, 5)
+	
+	--//MAYA Attack Mode//--
+	AI.SetPlayerVar(2, "AttackMode", 0) 
+
+	--// SOLDIERLIMITRELATIVE//--
+	AI.SetPlayerVar(2, "SoldierLimitRelative", 100,130,180)
+	AI.SetPlayerVar(2, "SoldierLimitAbsolute", 150,200,300)
+
+	--//DTMaxFarmsPerHour//--
+
+	AI.SetPlayerVar(3, "DTMaxFarmsPerHour", 3, 6, 12)
+
+	--//DISABLE THE PRODUCTION OF SHAMANS AND DARK GARDENERS	
+	AI.DarkTribeUseShamans(3,0)
+	AI.DarkTribeUseDarkGardeners(3,0)
+
+	request_event(MushroomfarmsDestroyedAndMayaAttackCheck, Events.FIVE_TICKS)
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	ShowEnemies_new_game()
+end
+
+
+-- -----------------------------------------------------------------------------
+
+function register_functions()
+	-- Every function, which requests events, must be registered here!
+
+	include("ShowEnemies.txt")
+	gShowEnemies_SuppressDefaultTargets = 1
+	tinsert(gShowEnemies_Targets, {191,173})
+	ShowEnemies_register_functions()
+
+	reg_func(MushroomfarmsDestroyedAndMayaAttackCheck)
+	reg_func(VictoryConditionCheck) 
+end

@@ -1,0 +1,155 @@
+-- This script shows position of all enemies to a player at the start of the game, and then returns camera back to the player starting position.
+-- 2009 Dmitriy Chervov
+
+gShowEnemies_Step = 1
+gShowEnemies_PrevStep = 0
+gShowEnemies_StepAfterTargets = 0
+gShowEnemies_Timeout = 0
+gShowEnemies_GameTick = 0;
+gShowEnemies_Targets = {} -- list of targets which we show at the start of the game
+gShowEnemies_SuppressDefaultTargets = 0 -- set this to 1 right after calling include() to suppress default targets
+gShowEnemies_DisabledInputClickRequested = 0
+gShowEnemies_TapOnLastTarget = 0
+
+-- constants. don't change without changing the sources
+gShowEnemies_CalculateDynLayerSteps = 50
+gShowEnemies_UpdateGfxLayerSteps = 8
+gShowEnemies_FoggingSteps = gShowEnemies_CalculateDynLayerSteps + gShowEnemies_UpdateGfxLayerSteps
+
+
+function ShowEnemies_reveal_area(i, pos)
+	Map.RevealArea(pos[1], pos[2], 30)
+end
+
+
+function ShowEnemies_main()
+	gShowEnemies_GameTick = gShowEnemies_GameTick + 1
+
+	if gShowEnemies_Timeout > 0 then
+		gShowEnemies_Timeout = gShowEnemies_Timeout - 1
+		if gShowEnemies_Timeout <= 0 then
+			gShowEnemies_Step = gShowEnemies_Step + 1
+		end
+	end
+
+	if gShowEnemies_Step == gShowEnemies_PrevStep then
+		return
+	end
+
+	gShowEnemies_PrevStep = gShowEnemies_Step
+	
+	if (gShowEnemies_Step > 1) and (getn(gShowEnemies_Targets) == 0) then    -- the game was loaded; stop the script
+		unrequest_event(ShowEnemies_main, Events.TICK)
+		return
+	end
+
+	if gShowEnemies_Step == 1 then
+		Game.EnableAllControls(0)
+		Game.CloseResourceBar()
+		ShowEnemies_local_player = Game.LocalPlayer()
+		Map.SetScreenPos(Game.GetPlayerStartX(ShowEnemies_local_player), Game.GetPlayerStartY(ShowEnemies_local_player))
+		Map.LockScreenPos(Game.GetPlayerStartX(ShowEnemies_local_player), Game.GetPlayerStartY(ShowEnemies_local_player))     -- a workaround to make sure minimap is not controllable through rollover
+
+		if gShowEnemies_SuppressDefaultTargets == 0 then    -- create gShowEnemies_Targets array on the first step. It's necessary because later we determine by it whether the game was loaded (if it's so, the array is empty) - and if it's true, we stop the script.
+			ShowEnemies_players_count = Game.NumberOfPlayers()
+			ShowEnemies_local_player = Game.LocalPlayer()
+			ShowEnemies_i = 1
+			while ShowEnemies_i <= ShowEnemies_players_count do
+				if ShowEnemies_i ~= ShowEnemies_local_player then
+					tinsert(gShowEnemies_Targets, {Game.GetPlayerStartX(ShowEnemies_i), Game.GetPlayerStartY(ShowEnemies_i)})
+				end
+				ShowEnemies_i = ShowEnemies_i + 1
+			end
+		end
+
+		gShowEnemies_Timeout = 60
+	elseif gShowEnemies_Step == 2 then     -- send a command to reveal targets and wait a moment, so that we move to the first target right in time to see how it reveals
+		foreachi(gShowEnemies_Targets, ShowEnemies_reveal_area)
+		unrequest_event(ShowEnemies_OnMsgAreaClick, Events.MSGAREACLICK)     -- unregister ShowEnemies_OnMsgAreaClick, we don't need it anymore
+		gShowEnemies_Timeout = gShowEnemies_FoggingSteps + 33 - gShowEnemies_GameTick
+		if gShowEnemies_Timeout > gShowEnemies_FoggingSteps then
+			gShowEnemies_Timeout = gShowEnemies_Timeout - gShowEnemies_FoggingSteps     -- decrease delay when possible, but leave timeout precisely in sync with fogging update
+		end
+	elseif gShowEnemies_Step == 3 then     -- hide goal
+		Tutorial.ShowText()
+		gShowEnemies_Timeout = 7
+	elseif gShowEnemies_Step == 4 then     -- show minimap
+		Game.OpenMinimap()
+		gShowEnemies_StepAfterTargets = gShowEnemies_Step + 1 + getn(gShowEnemies_Targets)
+		gShowEnemies_Timeout = 30
+	elseif gShowEnemies_Step < gShowEnemies_StepAfterTargets then     -- show all targets one by one
+		if gShowEnemies_DisabledInputClickRequested == 0 then
+			gShowEnemies_DisabledInputClickRequested = 1
+			request_event(ShowEnemies_DisabledInputClick, Events.DISABLEDINPUTCLICK)
+		end
+		ShowEnemies_target_index = gShowEnemies_Step + getn(gShowEnemies_Targets) - gShowEnemies_StepAfterTargets + 1;
+		Map.UnlockScreenPos()     -- unlock screen pos before setting it
+		Map.SetScreenPos(gShowEnemies_Targets[ShowEnemies_target_index][1], gShowEnemies_Targets[ShowEnemies_target_index][2])     -- set screen pos without smooth scrolling
+		Map.LockScreenPos(gShowEnemies_Targets[ShowEnemies_target_index][1], gShowEnemies_Targets[ShowEnemies_target_index][2])     -- a workaround to make sure minimap is not controllable through rollover
+		gShowEnemies_Timeout = 37
+	elseif gShowEnemies_Step == gShowEnemies_StepAfterTargets then     -- let the user see how everything hides
+		unrequest_event(ShowEnemies_DisabledInputClick, Events.DISABLEDINPUTCLICK)
+		Map.UnrevealArea()
+		if gShowEnemies_TapOnLastTarget == 0 then
+		-- sync with fogging update
+			gShowEnemies_Timeout = gShowEnemies_FoggingSteps + 6 - mod(gShowEnemies_GameTick, gShowEnemies_FoggingSteps)
+			if mod(gShowEnemies_GameTick, gShowEnemies_FoggingSteps) >= gShowEnemies_CalculateDynLayerSteps then     -- wait more if Map.UnrevealArea() was called in update gfx layer state - fogging update starts later than usual
+				gShowEnemies_Timeout = gShowEnemies_Timeout + gShowEnemies_FoggingSteps
+			end
+		else
+			gShowEnemies_Step = gShowEnemies_Step + 1     -- user tapped on the last target - respond immediately
+		end
+	elseif gShowEnemies_Step == gShowEnemies_StepAfterTargets + 1 then     -- go back to local player start position
+		ShowEnemies_local_player = Game.LocalPlayer()
+		Map.UnlockScreenPos()
+		Map.SetScreenPos(Game.GetPlayerStartX(ShowEnemies_local_player), Game.GetPlayerStartY(ShowEnemies_local_player))
+		Map.LockScreenPos(Game.GetPlayerStartX(ShowEnemies_local_player), Game.GetPlayerStartY(ShowEnemies_local_player))
+		gShowEnemies_Timeout = 8
+	elseif gShowEnemies_Step == gShowEnemies_StepAfterTargets + 2 then     -- close minimap after a small delay
+		Game.CloseMinimap()
+		Game.OpenResourceBar()
+		gShowEnemies_Timeout = 8
+	elseif gShowEnemies_Step == gShowEnemies_StepAfterTargets + 3 then     -- enable all controls only when minimap was closed, because otherwise it's possible to accidentally click on a minimap when it's closing
+		Game.EnableAllControls(1)
+		Map.UnlockScreenPos()
+		unrequest_event(ShowEnemies_main, Events.TICK)   -- unregister ShowEnemies_main so that it doesn't waste cpu time
+	end
+end
+
+function ShowEnemies_DisabledInputClick()
+	if gShowEnemies_Step < gShowEnemies_StepAfterTargets then
+		gShowEnemies_Timeout = 0
+		gShowEnemies_Step = gShowEnemies_Step + 1
+		if gShowEnemies_Step == gShowEnemies_StepAfterTargets then     -- don't wait for fogging update when user tapped on the last target, return back to the player position immediately
+			gShowEnemies_TapOnLastTarget = 1
+		end
+	end
+end
+
+function ShowEnemies_OnMsgAreaClick(btn)
+	if gShowEnemies_Step == 1 then
+		gShowEnemies_Timeout = 0
+		gShowEnemies_Step = gShowEnemies_Step + 1
+	end
+end
+
+function ShowEnemies_FirstTickOfNewOrLoadedGame()
+	if gShowEnemies_GameTick > 0 then     -- it's a loaded game; disable the script
+		unrequest_event(ShowEnemies_main, Events.TICK)
+		unrequest_event(ShowEnemies_OnMsgAreaClick, Events.MSGAREACLICK)
+		unrequest_event(ShowEnemies_FirstTickOfNewOrLoadedGame, Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
+	end
+end
+
+function ShowEnemies_new_game()
+	request_event(ShowEnemies_FirstTickOfNewOrLoadedGame, Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
+	request_event(ShowEnemies_main, Events.TICK)
+	request_event(ShowEnemies_OnMsgAreaClick, Events.MSGAREACLICK)
+end
+
+function ShowEnemies_register_functions()
+	reg_func(ShowEnemies_FirstTickOfNewOrLoadedGame)
+	reg_func(ShowEnemies_main)
+	reg_func(ShowEnemies_OnMsgAreaClick)
+	reg_func(ShowEnemies_DisabledInputClick)
+end
