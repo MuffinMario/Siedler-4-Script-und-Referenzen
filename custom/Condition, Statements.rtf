@@ -76,25 +76,25 @@ pi
 =====================================================================================
 Vehicles.-
 -:
-AddVehicle(x, y, <Partei>, Vehicles.<Fahrzeugart>,?,D,a)	(Befehl)	|Fügt a <Fahrzeugart> auf x,y für die Partei <Partei> mit D Munition hinzu  (Beispielcode: ...(297, 305, 2, Vehicles.WARSHIP, 5,80, 1)
+AddVehicle(x, y, <Partei>, Vehicles.<Fahrzeugart>,?,D,a)	(Befehl)	|FÃ¼gt a <Fahrzeugart> auf x,y fÃ¼r die Partei <Partei> mit D Munition hinzu  (Beispielcode: ...(297, 305, 2, Vehicles.WARSHIP, 5,80, 1)
 AmountInArea (<Partei>,Vehicles.<Fahrzeugart>,x,y, r)		(Status)
 =====================================================================================
 AI.-
 -:
-SetPlayerVar(<Partei>, "<Mode>", L,N,na)		|Setzt für die Partei <Partei> fest, wieviel/ob <Mode> auf leichter Schwierigkeit (L), normaler Schwierigkeit(N) oder nicht angegebener(na) gemacht wird
+SetPlayerVar(<Partei>, "<Mode>", L,N,na)		|Setzt fÃ¼r die Partei <Partei> fest, wieviel/ob <Mode> auf leichter Schwierigkeit (L), normaler Schwierigkeit(N) oder nicht angegebener(na) gemacht wird
 NewSquad(<Partei>, AI.<Kommando>, x,y)		|Schickt eine Gruppe mit dem Befehl <Kommando> zu x,y (Nur via script erstellte Soldaten)
 DarkTribeUseShamans(<Partei>, ma)	|Setzt fest, wieviele Schamanen es (auf der Map gleichzeitig?) geben kann (0 = keine Schamanen) von der Partei <Partei>
-AttackNow(<Partei>,<aufPartei>, a	|Lässt Partei <Partei> <aufPartei> mit a Soldaten angreifen
+AttackNow(<Partei>,<aufPartei>, a	|LÃ¤sst Partei <Partei> <aufPartei> mit a Soldaten angreifen
 
 =====================================================================================
 
 
 Buildings
 -:
-Amount(<Partei>, Building.<Gebäudeart>, Building.<Zweigstatus>) (Status)
-ExistsBuildingInArea(<Partei>,Buildings.<Gebäudeart>,x,y,r, Building.<Zweigstatus>) (Status)
-GetXPosBuilding(<Partei>, Buildings.<Gebäudeart>)
-GetYPosBuilding(<Partei>, Buildings.<Gebäudeart>)
+Amount(<Partei>, Building.<GebÃ¤udeart>, Building.<Zweigstatus>) (Status)
+ExistsBuildingInArea(<Partei>,Buildings.<GebÃ¤udeart>,x,y,r, Building.<Zweigstatus>) (Status)
+GetXPosBuilding(<Partei>, Buildings.<GebÃ¤udeart>)
+GetYPosBuilding(<Partei>, Buildings.<GebÃ¤udeart>)
 IsSelected
 =====================================================================================
 
@@ -106,13 +106,13 @@ EnemyPlayersLost(<vonPartei>) (Befehl)				|Stellt ein, dass die Gegnerparteien v
 PlayerLost(<Partei>) (Befehl)				|Stellt ein, ob die Partei <Partei> verloren hat.	(VictoryConditionCheck)
 HasPlayerLost(<Partei) (Status)			|
 DefaultGameEndCheck (Befehl)				|Spielende
-DefaultPlayerLostCheck(<Partei>)	(Befehl)		|PlayerLostCheck setzt die gewählte Partei auf "Verloren"
+DefaultPlayerLostCheck(<Partei>)	(Befehl)		|PlayerLostCheck setzt die gewÃ¤hlte Partei auf "Verloren"
 SetFightingStrenght(<Partei>, p) (Befehl)	|Setzt die Kampfkraft einer Partei auf p%
-IsAreaDarkLand (x,y,r) (Status)				|Prüft ob in der Umgebung x,y von r Bildpunkten der Boden von
-							|dunkler Fläche besetzt ist
-IsAreaOwned(<Partei>,x,y,r)			|(Mögliche Siegbedingung)Prüft, ob in der Umgebung x,y im Radius von r der Boden von der Partei <Partei> besetzt ist.
+IsAreaDarkLand (x,y,r) (Status)				|PrÃ¼ft ob in der Umgebung x,y von r Bildpunkten der Boden von
+							|dunkler FlÃ¤che besetzt ist
+IsAreaOwned(<Partei>,x,y,r)			|(MÃ¶gliche Siegbedingung)PrÃ¼ft, ob in der Umgebung x,y im Radius von r der Boden von der Partei <Partei> besetzt ist.
 Time()	(Status)	|Gibt die Spielzeit in Minuten aus
-ShowClock(t)			|Gibt die Übrige Zeit in t Sekunden an
+ShowClock(t)			|Gibt die Ãœbrige Zeit in t Sekunden an
 FindAnyUnit
 =====================================================================================
 
@@ -121,7 +121,7 @@ Settlers.-
 SetHealthInArea(<Partei>,Settlers.<Klasse>[_<Stufe>],X,Y,r,M)		|Setzt die Gesundheit von Settlers.<Klasse>_<Stufe> aus der Partei
 									|<Partei> im Gebiet von X,Y in der Umgebung vom Radius r 
 									|zu M%
-AddSettlers(X,Y,<Partei>, Settlers.<Klasse>[_<Stufe>], a) 	|Erhöht die Anzahl von <Klasse>[des Levels <Stufe>] auf den Koordinaten
+AddSettlers(X,Y,<Partei>, Settlers.<Klasse>[_<Stufe>], a) 	|ErhÃ¶ht die Anzahl von <Klasse>[des Levels <Stufe>] auf den Koordinaten
 								|X und Y der Partei <Partei> um a
 AmountInArea(<Partei>, Settlers.<Klasse>[_<Stufe>], x,y,r)
 
@@ -130,7 +130,7 @@ AmountInArea(<Partei>, Settlers.<Klasse>[_<Stufe>], x,y,r)
 Magic.-
 -:
 DecreaseMana(<Partei>, a) (Befehl)			|Verkleinert die Anzahl von Mana von <Partei> um a
-IncreaseMana(<Partei>, a) (Befehl)		|Vergrößert die Anzahl von Mana von <Partei> um a
+IncreaseMana(<Partei>, a) (Befehl)		|VergrÃ¶ÃŸert die Anzahl von Mana von <Partei> um a
 CurrentManaAmount(<Partei>) (Status)			|Gibt die Anzahl von Mana einer Partei aus
 
 
@@ -139,7 +139,7 @@ CurrentManaAmount(<Partei>) (Status)			|Gibt die Anzahl von Mana einer Partei au
 
 Effects.-
 -:
-AddEffect(Effects.[{R/V/M/T}MAGIC_]<Effektname>, Sounds.<Sound>, x, y, ?)  		|R= Römer V= Vikinger M= Mayas T=Trojaner
+AddEffect(Effects.[{R/V/M/T}MAGIC_]<Effektname>, Sounds.<Sound>, x, y, ?)  		|R= RÃ¶mer V= Vikinger M= Mayas T=Trojaner
 
 ====================================================================================
 
@@ -167,7 +167,7 @@ DisableLastPlayer
 
 , Event.#
 #:
-VICTORY_CONDITION_CHECK		|Verknüpft die damit verbundene Funktion damit, dass die Aufgaben als Siegbedingungen feststehen.
+VICTORY_CONDITION_CHECK		|VerknÃ¼pft die damit verbundene Funktion damit, dass die Aufgaben als Siegbedingungen feststehen.
 TICK			|(MS/TICK NICHT ANGEGEBEN)Nach ein wenigen Ticks wird die funktion, die mit dem Event verbunden ist, aktualisiert.
 FIRST_TICK_OF_NEW_GAME		|Die mit dem Event verbundene Funktion wird aktiviert, sobald ein neues Spiel gestartet wird
 FIRST_TICK_OF_NEW_OR_LOADED_GAME	|Das gleiche, wie oben, nur dass es nun auch einen neuen Tick gibt, sobald ein Spielstand mit der Karte gestartet wird
@@ -178,15 +178,15 @@ new_game() 	|Wird aktiviert, wenn das Spiel startet
 register_functions()	|Registriert funktionen, die Events benutzen.
 VictoryConditionCheck()		|In dieser Funktion werden die Siegbedingungen beschrieben
 InitVar()		|Zeit/Tick Management
-TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu machen
+TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zÃ¤hlt, zu machen
 	Legende:
 	Partei: 1, 2, 3, 4, 5, 6, 7, 8 ; Game.LocalPlayers()
 	Klasse: 	SWORDSMAN,BOWMAN, MEDIC, BLOWGUNWARRIOR, AXEWARRIOR, BACKPACKCATAPULTIST
 			ANY_SETTLER 				|Alle Siedler
 			DONKEY	|Esel
 			BUILDER, DIGGER		
-	Stufe:		01, 02, 03 		|Gilt nur für SWORDSMAN,BOWMAN, MEDIC, BLOWGUNWARRIOR, AXEWARRIOR, BACKPACKCATAPULTIST
-	Gebäudeart: 	WOODCUTTERHUT (Holzfällerhütte);
+	Stufe:		01, 02, 03 		|Gilt nur fÃ¼r SWORDSMAN,BOWMAN, MEDIC, BLOWGUNWARRIOR, AXEWARRIOR, BACKPACKCATAPULTIST
+	GebÃ¤udeart: 	WOODCUTTERHUT (HolzfÃ¤llerhÃ¼tte);
 			STONECUTTERHUT (Steinmetz)
 			RESIDENCESMALL (Kleines Wohnhaus);
 			WATERWORKHUT (Wasserwerk);
@@ -208,7 +208,7 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 			EYECATCHER12	/
 			BARRACKS (Kaserne);
 			GUARDTOWERSMALL (Kleiner Wachturm);
-			GUARDTOWERBIG (Großer Wachturm);
+			GUARDTOWERBIG (GroÃŸer Wachturm);
 	Zweigstatus: 	READY, UNDERCONSTRUCTION
 	Effektname: 	MUSHROOMFARM_BUILD		|Die Aufbauanimation von der Pilzfarm des dunklen Volkes
 			GIFTOFGOD				| Geschenk Gottes / Erster Zauberspruch von allen Priestern (12 Mana)
@@ -216,7 +216,7 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 			GIFT			|Geschenk Gottes - Ton
 	Fahrzeugart:	WARSHIP				|Kriegsschiff
 			TRANSPORTSHIP				|TRANSPORTSHIP  = FERRY?
-			FERRY				|Fähre (?,D und a auf 0 setzen wäre angebracht)
+			FERRY				|FÃ¤hre (?,D und a auf 0 setzen wÃ¤re angebracht)
 		Mode:		SoldierLimitAbsolute (?,?,?)		|Setzt den maximalen Wert von Soldaten in einer Partei
 				SoldierLimitRelative (?,?,?)		|Setzt den relativen Wert von Soldaten in einer Partei verglichen zum Spieler (?)
 				UsePioneers (a)
@@ -238,21 +238,21 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				10: Fichte
 				11: Kokospalme
 				12: Dattelpalme
-				13: Walnuß
+				13: WalnuÃŸ
 				14: Korkeiche
 				15: Pinie
 				16: Gemeine Pinie
-				17: Großer Olivenbaum
+				17: GroÃŸer Olivenbaum
 				18: Kleiner Olivenbaum
 				19: Tropische Dattelpalme1 (!)
 				20: Tropische Dattelpalme2 (!)
-				21: Dunkelblättrige, tropische Palme (!)
+				21: DunkelblÃ¤ttrige, tropische Palme (!)
 				22: Tropische Palme (!)
 				23: Dunkle Kastanie
 				24: Dunkle Eiche
 				25: Dunkler Ahorn
 				26: Dunkle Buche
-				27: Dunkle Walnuß
+				27: Dunkle WalnuÃŸ
 				28: Dunkle Korkeiche
 				29: Dunkle Tanne
 				30: |KEIN OBJEKT| (!*)
@@ -266,14 +266,14 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				38: |KEIN OBJEKT| (!*)
 				39: |KEIN OBJEKT| (!*) 
 				40: |KEIN OBJEKT| (!*)
-				41: Zerklüftetes Riff
+				41: ZerklÃ¼ftetes Riff
 				42: Verwildertes Trojanisches Pferd (!)
 				43: Ginsterbusch
 				44: Magnolie
 				45: Haselnuss
 				46: Holunder
 				47: Liguster
-				48: Weißdorn
+				48: WeiÃŸdorn
 				49: Preiselbeere
 				50: Hoher Kaktus
 				51: Keltisches Kreuz
@@ -281,74 +281,74 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				53: Menschliches Skelett
 				54: Wagenwrack
 				55: Schiffswrack
-				56: Brauner Stein Größe 4/10
-				57: Brauner Stein Größe 7/10
-				58: Brauner Stein Größe 5/10
-				59: Brauner Stein Größe 8/10
-				60: Brauner Stein Größe 3/10
-				61: Brauner Stein Größe 9/10
-				62: Brauner Stein Größe 1/10
-				63: Brauner Stein Größe 10/10
-				64: Brauner Stein Größe 2/10
-				65: Brauner Stein Größe 6/10
-				66: Grauer Stein Größe 6/10
-				67: Grauer Stein Größe 2/10
-				68: Grauer Stein Größe 10/10
-				69: Grauer Stein Größe 5/10
-				70: Grauer Stein Größe 3/10
-				71: Grauer Stein Größe 4/10
-				72: Grauer Stein Größe 9/10
-				73: Grauer Stein Größe 7/10
-				74: Grauer Stein Größe 1/10
-				75: Grauer Stein Größe 8/10
+				56: Brauner Stein GrÃ¶ÃŸe 4/10
+				57: Brauner Stein GrÃ¶ÃŸe 7/10
+				58: Brauner Stein GrÃ¶ÃŸe 5/10
+				59: Brauner Stein GrÃ¶ÃŸe 8/10
+				60: Brauner Stein GrÃ¶ÃŸe 3/10
+				61: Brauner Stein GrÃ¶ÃŸe 9/10
+				62: Brauner Stein GrÃ¶ÃŸe 1/10
+				63: Brauner Stein GrÃ¶ÃŸe 10/10
+				64: Brauner Stein GrÃ¶ÃŸe 2/10
+				65: Brauner Stein GrÃ¶ÃŸe 6/10
+				66: Grauer Stein GrÃ¶ÃŸe 6/10
+				67: Grauer Stein GrÃ¶ÃŸe 2/10
+				68: Grauer Stein GrÃ¶ÃŸe 10/10
+				69: Grauer Stein GrÃ¶ÃŸe 5/10
+				70: Grauer Stein GrÃ¶ÃŸe 3/10
+				71: Grauer Stein GrÃ¶ÃŸe 4/10
+				72: Grauer Stein GrÃ¶ÃŸe 9/10
+				73: Grauer Stein GrÃ¶ÃŸe 7/10
+				74: Grauer Stein GrÃ¶ÃŸe 1/10
+				75: Grauer Stein GrÃ¶ÃŸe 8/10
 				76: Nesseln
 				77: Helles Gras
 				78: Dickblatt
-				79: Löwenzahn
+				79: LÃ¶wenzahn
 				80: Huflattich
 				81: Minze
-				82: Beifuß
+				82: BeifuÃŸ
 				83: Hirschzunge
 				84: Sauerampfer
 				85: Distel
 				86: |KEIN OBJEKT| (!*)
 				87: Brunnenruine
 				88: |KEIN OBJEKT| (!*)
-				89: Tümpel
+				89: TÃ¼mpel
 				90: Ruine
 				91: Vogelscheuche 
 				92: Pilzkreis
-				93: Rötlicher Stein
+				93: RÃ¶tlicher Stein
 				94: Kleiner dunkler Fels (!(?))
-				95: Rötlicher Fels (!)
-				96: Großer rötlicher Fels (!)
-				97: Mittlerer rötlicher Fels (!)
-				98: Kleiner rötlicher Fels (!)
+				95: RÃ¶tlicher Fels (!)
+				96: GroÃŸer rÃ¶tlicher Fels (!)
+				97: Mittlerer rÃ¶tlicher Fels (!)
+				98: Kleiner rÃ¶tlicher Fels (!)
 				99: Dunkle Felsen
 				100: Mittlerer dunkler Fels
-				101: Großer dunkler Fels
+				101: GroÃŸer dunkler Fels
 				102: Kleiner, dunkler Stein (Konnte diesen Stein nicht in der Editor library finden(!))
 				103: Dunkles Efeu
-				104: Böser Fliegenpilz
-				105: Böser Steinpilz
-				106: Böser Champignon
+				104: BÃ¶ser Fliegenpilz
+				105: BÃ¶ser Steinpilz
+				106: BÃ¶ser Champignon
 				107: Spitzes Riff
 				108: Breites Riff
 				109: Kleines Riff
-				110: Zerklüftetes Riff
+				110: ZerklÃ¼ftetes Riff
 				111: Dunkle Haselnuss
 				112  Dunkler Liguster
 				113: Dunkle Magnolie
 				114: Dunkle Preiselbeere
-				115: Aus 1/12 Trojanermission: Morbus' übriger, dunkler Statuenboden (!)
-				116: Säule1
+				115: Aus 1/12 Trojanermission: Morbus' Ã¼briger, dunkler Statuenboden (!)
+				116: SÃ¤ule1
 				117: Trojanisches Pferd im Bau (!)
 				118: Trojanisches Pferd (!)
 				119: Portal (!)
-				120: Großer Kaktus
+				120: GroÃŸer Kaktus
 				121: Mittlerer Kaktus
 				122: Kleiner Kaktus
-				123: Holzstöcke am Rand bei derzeitig konstruierten Gebäuden(!)
+				123: HolzstÃ¶cke am Rand bei derzeitig konstruierten GebÃ¤uden(!)
 				124: Steine zum Bauen 1/13
 				125: Steine zum Bauen 2/13
 				126: Steine zum Bauen 3/13
@@ -375,16 +375,16 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				147: Dunkle Steine zum Bauen 11/13
 				148: Dunkle Steine zum Bauen 12/13
 				149: Dunkle Steine zum Bauen 13/13
-				150: Dunkler Tümpel
+				150: Dunkler TÃ¼mpel
 				151: Dunkler Schneemann (!)
-				152: Säule2
-				153: Säulenecke1
-				154: Säulenecke2
-				155: Säulenecke3
-				156: Säulenecke4
-				157: Umgefallene Säule
-				158: Halbe Säule
-				159: Halbe, Umgefallene Säule
+				152: SÃ¤ule2
+				153: SÃ¤ulenecke1
+				154: SÃ¤ulenecke2
+				155: SÃ¤ulenecke3
+				156: SÃ¤ulenecke4
+				157: Umgefallene SÃ¤ule
+				158: Halbe SÃ¤ule
+				159: Halbe, Umgefallene SÃ¤ule
 				160: Maulbeere
 				161: Grab
 				162: Ausgereifter Weinstock (!)
@@ -393,31 +393,31 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				165: Pampasgras
 				166: Schilfrohr klein
 				167: Schilfrohr mittel
-				168: Schilfrohr groß
-				169: Muschel groß
+				168: Schilfrohr groÃŸ
+				169: Muschel groÃŸ
 				170: Muschel klein
 				171: Rote Seerose
-				172: Weiße Seerose
+				172: WeiÃŸe Seerose
 				173: Gelbe Seerose
 				174: Trockene Zweige
 				175: Trockener Zweig
 				176: Trockener Ast
 				177: Trockener Busch
 				178: Halber, kleiner Rinderhaufen(?) (!)
-				179: Wüstenbusch
-				180: Wüstenstrauch
+				179: WÃ¼stenbusch
+				180: WÃ¼stenstrauch
 				181: Fliegenpilz
 				182: Steinpilz
 				183: Champignon
-				184: Blumen weiß/lila
-				185: Blumen weiß
+				184: Blumen weiÃŸ/lila
+				185: Blumen weiÃŸ
 				186: Blumen lila
-				187: Blumen weiß/rosa
+				187: Blumen weiÃŸ/rosa
 				188: Blumen rosa
 				189: Kleiner Rinderhaufen
 				190: Mittlerer Rinderhaufen
-				191: Großer Rinderhaufen
-				192: Säulenreihe1
+				191: GroÃŸer Rinderhaufen
+				192: SÃ¤ulenreihe1
 				193: Schild (!)
 				194: 1x Kohlevorkommen Schild (!)
 				195: 2x Kohlevorkommen Schild (!)
@@ -434,50 +434,50 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				206: 1x Schwefelvorkommen Schild(!)
 				207: 2x Schwefelvorkommen Schild(!)
 				208: 3x Schwefelvorkommen Schild(!)
-				209: Überreifes Getreidefeld (!)
+				209: Ãœberreifes Getreidefeld (!)
 				210: Reifes Getreidefeld (!)
 				211: Agave (!)
 				212: Dunkles-Volk reifer Pilz (!)
 				213: Dunkles-Volk halbreifer Pilz (!)
 				214: Dunkles-Volk nicht reifer Pilz (!)
 				215: Schneemann
-				216: SETZT DEN EFFEKT, DASS DAS FELD AUF DUNKLES-LAND GESETZT WIRD (Auch möglich mit Berg und Schnee) (!)
+				216: SETZT DEN EFFEKT, DASS DAS FELD AUF DUNKLES-LAND GESETZT WIRD (Auch mÃ¶glich mit Berg und Schnee) (!)
 				217: Bienennest (!)
-				218: Säulenreihe2
-				219: Säulenbogen1
-				220: Säulenbogen2
+				218: SÃ¤ulenreihe2
+				219: SÃ¤ulenbogen1
+				220: SÃ¤ulenbogen2
 				221: Magisches Kraut
-				222: Pfaffenhütchen
+				222: PfaffenhÃ¼tchen
 				223: Schloss (7 Weltwunder) (!)
-				224: Großer Turm mit Feuer auf der Spitze (7 Weltwunder) (!)
-				225: Römische Freiheitsstatue (Koloss von Rhodos/7 Weltwunder) (!)
+				224: GroÃŸer Turm mit Feuer auf der Spitze (7 Weltwunder) (!)
+				225: RÃ¶mische Freiheitsstatue (Koloss von Rhodos/7 Weltwunder) (!)
 				226: Mosaik Statue (7 Weltwunder) (!)
 				227: Mosaik Statue im Bau (7 Weltwunder) (!)
-				228: MA MA Gebäude (7 Weltwunder) (!)
+				228: MA MA GebÃ¤ude (7 Weltwunder) (!)
 				229: |KEIN OBJEKT| (!*)
 				230: Ein besonderer Busch aus dem "Die neue Welt"-Add On (!)
-				231: Totengrab mit Spinnennetzen und Knochenschädel
+				231: Totengrab mit Spinnennetzen und KnochenschÃ¤del
 				232: P-Runenpyramide(!)
-				233: Dunkler Stein Größe ?/10
-				234: Dunkler Stein Größe ?/10
-				235: Dunkler Stein Größe ?/10
-				236: Dunkler Stein Größe ?/10
-				237: Dunkler Stein Größe ?/10
-				238: Dunkler Stein Größe ?/10
-				239: Dunkler Stein Größe ?/10
-				240: Dunkler Stein Größe ?/10
-				241: Dunkler Stein Größe ?/10
-				242: Dunkler Stein Größe ?/10
-				243: Dunkler roter Stein Größe ?/10
-				244: Dunkler roter Stein Größe ?/10
-				245: Dunkler roter Stein Größe ?/10
-				246: Dunkler roter Stein Größe ?/10
-				247: Dunkler roter Stein Größe ?/10
-				248: Dunkler roter Stein Größe ?/10
-				249: Dunkler roter Stein Größe ?/10
-				250: Dunkler roter Stein Größe ?/10
-				251: Dunkler roter Stein Größe ?/10
-				252: Dunkler roter Stein Größe ?/10
+				233: Dunkler Stein GrÃ¶ÃŸe ?/10
+				234: Dunkler Stein GrÃ¶ÃŸe ?/10
+				235: Dunkler Stein GrÃ¶ÃŸe ?/10
+				236: Dunkler Stein GrÃ¶ÃŸe ?/10
+				237: Dunkler Stein GrÃ¶ÃŸe ?/10
+				238: Dunkler Stein GrÃ¶ÃŸe ?/10
+				239: Dunkler Stein GrÃ¶ÃŸe ?/10
+				240: Dunkler Stein GrÃ¶ÃŸe ?/10
+				241: Dunkler Stein GrÃ¶ÃŸe ?/10
+				242: Dunkler Stein GrÃ¶ÃŸe ?/10
+				243: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				244: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				245: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				246: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				247: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				248: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				249: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				250: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				251: Dunkler roter Stein GrÃ¶ÃŸe ?/10
+				252: Dunkler roter Stein GrÃ¶ÃŸe ?/10
 				253: Spitzes Riff (zweites spitzes Riff, hat optisch (und praktisch?) keinen Unterschied zu ID 107)
 				254: Dunkle Spuckpflanze
 				255: Sonnenblumen (!)
@@ -498,24 +498,24 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				270: Wasserwellen 15 (!)
 				271: Wasserwellen 16 (!)
 				272: Grenzpunkte (Flackernde Parteifarben) (!)
-				273: Gold Barren (Dekoobjekt, überbaubar) (?) (!) 
-				274: Eisen Barren (Dekoobjekt, überbaubar) (!)
+				273: Gold Barren (Dekoobjekt, Ã¼berbaubar) (?) (!) 
+				274: Eisen Barren (Dekoobjekt, Ã¼berbaubar) (!)
 				275: Unidentifizierbares Objekt (?) (!)
-				276: Stein (Dekoobjekt, überbaubar) (!)
+				276: Stein (Dekoobjekt, Ã¼berbaubar) (!)
 				277: Unidentifizierbares Objekt (Goldhaufen?) (!)
-				278: Fisch (Dekoobjekt, überbaubar) (!)
+				278: Fisch (Dekoobjekt, Ã¼berbaubar) (!)
 				279: "Startposition setzen" - Flagge (Editor, flackernde Parteifarben) (!)
-				280: Steinschild TYP A (Auf den Wachtürmen) (!)
-				281: Steinschild TYP B (Auf den Wachtürmen) (!)
-				282: Steinschild TYP C (Auf den Wachtürmen) (!)
-				283: Kleine Häuserflagge (animiert, rot) (!)
-				284: Kleine Häuserflagge (animiert, blau) (!)
-				285: Kleine Häuserflagge (animiert, grün) (!)
-				286: Kleine Häuserflagge (animiert, gelb) (!)
-				287: Kleine Häuserflagge (animiert, violett) (!)
-				288: Kleine Häuserflagge (animiert, ockergelb) (!)
-				289: Kleine Häuserflagge (animiert, türkis) (!)
-				290: Kleine Häuserflagge (animiert, weiß) (!)
+				280: Steinschild TYP A (Auf den WachtÃ¼rmen) (!)
+				281: Steinschild TYP B (Auf den WachtÃ¼rmen) (!)
+				282: Steinschild TYP C (Auf den WachtÃ¼rmen) (!)
+				283: Kleine HÃ¤userflagge (animiert, rot) (!)
+				284: Kleine HÃ¤userflagge (animiert, blau) (!)
+				285: Kleine HÃ¤userflagge (animiert, grÃ¼n) (!)
+				286: Kleine HÃ¤userflagge (animiert, gelb) (!)
+				287: Kleine HÃ¤userflagge (animiert, violett) (!)
+				288: Kleine HÃ¤userflagge (animiert, ockergelb) (!)
+				289: Kleine HÃ¤userflagge (animiert, tÃ¼rkis) (!)
+				290: Kleine HÃ¤userflagge (animiert, weiÃŸ) (!)
 	EFFECT_ID:		1: Pfeilanimation
 				2:?
 				3:?
@@ -524,19 +524,19 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				6:?
 				7: |KEIN EFFEKT| (!*)
 				8: |KEIN EFFEKT| (!*)
-				9: Runde graue Sphäre
+				9: Runde graue SphÃ¤re
 				10: Feuerball
 				11: Schmetterling1
 				12: Schmetterling2
 				13: Schmetterling3
 				14: Vogel
-				15: Möve1
-				16: Möve2 
+				15: MÃ¶ve1
+				16: MÃ¶ve2 
 				17: Ente1 
 				18: Ente2
-				19: Ähnlich wie 9 eine sich um sich selbst drehende, graue Sphäre
-				20: grüne Explosion
-				21: dunkles Volk;grüner Effekt
+				19: Ã„hnlich wie 9 eine sich um sich selbst drehende, graue SphÃ¤re
+				20: grÃ¼ne Explosion
+				21: dunkles Volk;grÃ¼ner Effekt
 				22: |KEIN EFFEKT|
 				23: Thor's Hammer
 				24: Geschenk Gottes (1)
@@ -545,7 +545,7 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				27: Fisch -> Stein
 				28: |KE
 				29: |KE
-				30: Abkürzung (Eis -> Fels)
+				30: AbkÃ¼rzung (Eis -> Fels)
 				31: |KE
 				32: |KE
 				33: Blutrausch (Dusche)
@@ -555,7 +555,7 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				37: Regenwolke (Maya Spruch)
 				38: Gegner bannen
 				39: Schutzschild
-				40: Bogenschützen in Schmetterlinge verwandeln - Animation
+				40: BogenschÃ¼tzen in Schmetterlinge verwandeln - Animation
 				41: Level aufsteigen (Maya Spruch)
 				42: Wildleben (Wikinger, das mit den Hirschen)
 				43: |KE
@@ -563,24 +563,24 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				45: Vereisen (Auf Soldaten)
 				46: Schock (Wikinger Spruch)
 				47: Stein setzen (Maya)
-				48: Fisch auf Wasser (Römer)
+				48: Fisch auf Wasser (RÃ¶mer)
 				49: Jupiters Blitz
 				50: |KE
 				51: Gelbe Sprenkeleffekte
 				52: Blaue Sprenkeleffekte
-				53: Grüne Sprenkeleffekte
+				53: GrÃ¼ne Sprenkeleffekte
 				54: Schutzschild (Auf Soldaten)
 				55: Spieler teleportieren (Auf Soldaten)
 				56: Wildleben (Auf die Hirsche) (?)
 				57: Tutorial-Cursor
 				58: Pilzfarm Bauanimation
 				59: Kleiner Rauchfaden
-				60: Große Explosion
-				61: Große dunkle Explosion
+				60: GroÃŸe Explosion
+				61: GroÃŸe dunkle Explosion
 				62: Explosion
 				63: Dunkle Explosion
 				64: Aufsteigender Dampf
-				65: Grüner Pilz
+				65: GrÃ¼ner Pilz
 				66: Gigantische Explosion
 				67: Von unten aufsteigender, dunkler Rauch
 				68: Statisch, von unten aufsteigender, dunkler Rauch
@@ -588,26 +588,26 @@ TurnOnTheClock()		|Die Funktion, um einen Counter, welcher bis 0 zählt, zu mache
 				70: Von unten aufsteigender ,dunkelgrauer Rauch
 				71: Statisch, von unten aufsteigender, dunkelgrauer Rauch
 				72: Nach oben aufsteigender, dunkelgrauer Rauch
-				73: Von unten aufsteigender ,weißer Rauch
-				74: Statisch, von unten aufsteigender, weißer Rauch
-				75: Nach oben aufsteigender, weißer Rauch
+				73: Von unten aufsteigender ,weiÃŸer Rauch
+				74: Statisch, von unten aufsteigender, weiÃŸer Rauch
+				75: Nach oben aufsteigender, weiÃŸer Rauch
 				76: Flackernde, rote Explosion
-				77: Grüne Explosion
+				77: GrÃ¼ne Explosion
 				78: Feuer (!)
 				79: Statisch, von unten aufsteigender, dunkler, feuriger, kleiner Rauch
 				80: Statisch, von unten aufsteigender, dunkler, feuriger, mittelkleiner Rauch
 				81: Statisch, von unten aufsteigender, dunkler, feuriger, mittelerer Rauch
-				82: Statisch, von unten aufsteigender, dunkler, feuriger, mittelgroßer Rauch
-				83: Statisch, von unten aufsteigender, dunkler, feuriger, großer Rauch
-				84: Pfeilähnliches Projektil
-				85: Explosion (Abkürzung)
+				82: Statisch, von unten aufsteigender, dunkler, feuriger, mittelgroÃŸer Rauch
+				83: Statisch, von unten aufsteigender, dunkler, feuriger, groÃŸer Rauch
+				84: PfeilÃ¤hnliches Projektil
+				85: Explosion (AbkÃ¼rzung)
 					
 
 				(?) = Nicht sicher
 				(!) = Besonderes Objekt, Nicht im Editor vorhanden
 				* = Dieses Objekt gibt es in der Siedler-GFX Datenbank nicht
 
-		(((((((((Variablen: 		buildtype = Gebäudetyp)
+		(((((((((Variablen: 		buildtype = GebÃ¤udetyp)
 		(((((((((	   		x = X-Koordinate)))))))
 		(((((((((	   		y = Y-Koordinate)))))))
 
