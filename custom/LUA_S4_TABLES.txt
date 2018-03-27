@@ -1,13 +1,6 @@
 global variables = {
 	register_functions = function: 21C25968
 	new_game = function: 21C25578
-	fivetickfunc = function: 21C25920
-	mainfunc = function: 21C258D8
-	funcinfo_iterate = function: 21C25890
-	writeGlobalVarsAndTable = function: 21C25CC8
-	writeGlobalVarsAndTable_iterate = function: 21C25650
-	allvars = function: 21C24B58
-	getTableContents = function: 21C250B0
 	AI = {
 		<numbers> = {
 			DIFFICULTY_LEVEL_EASY = 1
