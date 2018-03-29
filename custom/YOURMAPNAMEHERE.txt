@@ -1,10 +1,10 @@
 
 ------------------------------------------------------------
 -- ZIEHE DIE DATEI IN BlueByte/Die Siedler IV/Script
--- BENENNE DIE DATEI WIE EINE DEINER SELBSTERSTELLEN MAPS UND SIE WIRD AUSGEFÜHRT
+-- BENENNE DIE DATEI WIE EINE DEINER SELBSTERSTELLEN MAPS UND DIESER SCRIPT WIRD AUSGEFÜHRT WENN DIE MAP GESTARTET WIRD
 --		   ----
 -- PUT THIS FOLDER IN BlueByte/Settlers 4/Script
--- NAME IT LIKE ONE OF YOUR CUSTOM MAPS AND IT WILL GET EXECUTED
+-- NAME IT LIKE ONE OF YOUR CUSTOM MAPS AND IT WILL GET EXECUTED WHEN EXECUTING THE MAP WITH THE SAME NAME
 --		----------
 
 -- BEISPIEL
@@ -13,23 +13,28 @@
 -- MAP NAME: mymap.map
 -- -> nenne diese Datei mymap.txt
 -- -> name this file mymap.txt
+-- öffne danach die Karte im Spiel und du wirst den table im Hauptverzeichnis deines Siedler IV Ordners sehen
+-- then open the map in the Game and you will see the fully dumped table in your root Settlers 4 folder
+-- > BlueBYTE/Settlers/LUA_S4_TABLE.json
 -----------------------------------------------
 function getTableContents(t,tname)
-	if type(t) ~= "table" then return tname .. " = <NOT A TABLE>" end
+	if type(t) ~= "table" then return tname .. " = <NOT A TABLE (" .. type(t) .. ")>" end
 	local ret = ""
-	ret = tname .. " = {\n"
+	ret = "\t" .. tname .. " = {\n"
 	local i = next(t, nil)
 	--dumping (inefficient -> lazy)
 	-- first dump numbers
+	ret = ret .. "\t\t<numbers> = {\n"
 	while i ~= nil do
 		local str = tostring(i)
 		local strtype = type(t[str])
 		if strtype == "number" then 
 			strtype = tostring(t[str]) 
-			ret = ret .. "\t" .. str .. " = " .. strtype .. "\n"
+			ret = ret .. "\t\t\t" .. str .. " = " .. strtype .. "\n"
 		end
 		i = next(t,i)
 	end
+	ret = ret .. "\t\t}\n"
 	--reset
 	 i = next(t, nil)
 	-- secondly dump strings
@@ -38,7 +43,7 @@ function getTableContents(t,tname)
 		local strtype = type(t[str])
 		if strtype == "string" then 
 			strtype = tostring(t[str]) 
-			ret = ret .. "\t" .. str .. " = \"" .. strtype .. "\"\n"
+			ret = ret .. "\t\t" .. str .. " = \"" .. strtype .. "\"\n"
 		end
 		i = next(t,i)
 	end
@@ -49,52 +54,66 @@ function getTableContents(t,tname)
 		local str = tostring(i)
 		local strtype = type(t[str])
 		if strtype == "function" or strtype == "table" or strtype == "userdata"  or strtype == "nil" then 
-			ret = ret .. "\t" .. str .. " = " .. strtype .. "\n"
+			ret = ret .. "\t\t" .. str .. " = " .. strtype .. "\n"
 		end
 		i = next(t,i)
 	end
-	ret = ret .. "}\n"
+	ret = ret .. "\t}\n"
 	return ret
 end
--- i dont know lua 3.2.1 so there apparently is no _G
-function mainfunc()
-	fhandle = openfile("LUA_S4_TABLES.txt","w")
-	--local s = getn(Buildings)
-	local buildingDumpStr = getTableContents(Buildings,"Buildings")
-	local eventDS = getTableContents(Events,"Events")
-	local AIDS = getTableContents(AI,"AI")
-	local vehicleDS = getTableContents(Vehicles,"Vehicles")
-	local gameDS = getTableContents(Game,"Game")
-	local settlerDS = getTableContents(Settlers,"Settlers")
-	local goodsDS = getTableContents(Goods,"Goods")
-	local dbgDS = getTableContents(dbg,"dbg")
-	local effectsDS= getTableContents(Effects,"Effects")
-	local varsDS = getTableContents(Vars,"Vars")
-	local magicDS = getTableContents(Magic,"Magic")
-	local soundsDS = getTableContents(Sounds,"Sounds")
+function allvars()
+	ghandle = openfile("global.txt","w")
+    local k,v=nil
+		write(ghandle,"Lets go" .. "\n")
+		flush(ghandle)
+    while 1 do
+        k,v=nextvar(k)
+        if k==nil then return end
+		write(ghandle,tostring(k) .. " = " .. tostring(v) .. "\n")
+		flush(ghandle)
+    end
+	closefile(ghandle)
+end
+
+function writeGlobalVarsAndTable_iterate(fhandle)
+    local k,v=nil
+    while 1 do
+        k,v=nextvar(k)
+        if k==nil then return end
+		local outputStr = ""
+		if type(v) == "table" then 
+			outputStr = getTableContents(v,tostring(k))
+		elseif type(v) == "string" then
+			outputStr = "\t" .. k .. " = \"" .. v .. "\"\n" 
+		else
+			outputStr = "\t" .. k .. " = " .. tostring(v) .. "\n"
+		end
+		write(fhandle,outputStr)
+		flush(fhandle)
+	end
+end
+function writeGlobalVarsAndTable(filename)
+
+	local fhandle = openfile(filename,"w")
 	
-	
-	write(fhandle,type(global) .. "\n")
-	write(fhandle,buildingDumpStr)
-	write(fhandle,eventDS)
-	write(fhandle,AIDS)
-	write(fhandle,vehicleDS)
-	write(fhandle,gameDS)
-	write(fhandle,settlerDS)
-	write(fhandle,goodsDS)
-	write(fhandle,dbgDS)
-	write(fhandle,effectsDS)
-	write(fhandle,varsDS)
-	write(fhandle,magicDS)
-	write(fhandle,soundsDS)
+	--iterate all global vars
+	write(fhandle,"global variables = {\n")
+	writeGlobalVarsAndTable_iterate(fhandle)
+	write(fhandle,"}")
 	closefile(fhandle)
 end
 
+function mainfunc()
+	writeGlobalVarsAndTable("LUA_S4_TABLE.json") -- its not json but its nice to order it in notepad++
+end
+
 function new_game()
+	-- mainfunc is called once every start of the map (start / load)
 	request_event(mainfunc,Events.FIRST_TICK_OF_NEW_OR_LOADED_GAME)
 end
 
 
 function register_functions()
+	-- register to access tables, i dont think we need that for dumping, but whatever
 	reg_func(mainfunc)
 end
