@@ -1,7 +1,7 @@
-![image from chip.de / icon](http://www.chip.de/ii/4069248_8f0d7ea928.gif)
+![image from gamersnet.nl](https://www.gamersnet.nl/previews/settlers4/logo.gif)
 # Siedler-4-Script-und-Referenzen
-Eine Liste vieler Scripte vieler Missionen und eine .rtf Datei die Informationen über die verschiedenen Funktionen gibt. Von mir erstellt vor 2 Jahren (2015). Die .txt dateien stammen von ANDY
-
+Eine Liste vieler Scripte vieler Missionen und eine .rtf Datei die Informationen über die verschiedenen Funktionen gibt. Von mir erstellt vor 2 Jahren (2015). Die meisten lua scripts in /source/ stammen von ANDY.
+Aktuell befindet sich auch eine Liste mit allen Funktionen und dessen Parameter und Rückgabewerte (nicht für alle Funktionen) in /custom/ um dir beim Einstieg in das Scripten zu vereinfachen.
 # HOW TO: Lua-Script aus einer Map ziehen
 Es gibt viele Möglichkeiten das zu machen. Die Siedler IV erstellt bei speziellen Maps eine spezielle Arbeitsspeicher-Region, in der ein Lua-Script ohne Enkodierung abgespeichert wird.
 Ein einfacher Weg diese zu kopieren, wäre mit dem Programm ![Cheat Engine](http://cheatengine.org). Dieses Besitzt ein Memory Viewer. Darin enthalten kann man ganz einfach nach einem Text in dem Arbeitsspeicher suchen. So gut wie alle Lua-Scripts besitzen eine function mit dem Namen 
