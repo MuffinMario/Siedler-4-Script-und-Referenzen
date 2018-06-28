@@ -24,12 +24,12 @@ global variables = {
 		}
 		DbgTst 						= function
 		GuardRegion 				= function
-		DarkTribeUseDarkGardeners 	= function
+		DarkTribeUseDarkGardeners 	= function(player,bool)
 		DbgSaveCfgVars 				= function
 		SetPlayerVar 				= function(player,"Var",n_0,n_1,n_2)
-		DarkTribeUseShamans 		= function
+		DarkTribeUseShamans 		= function(player,bool)
 		NewSquad 					= function(player,ai[,x,y])
-		DarkTribeDbgIgnoreFighters 	= function
+		DarkTribeDbgIgnoreFighters 	= function(player,bool) (?) UNTESTED
 		CastGratisSpell 			= function
 		ClearFlagBits 				= function
 		SetFlagBits 				= function
