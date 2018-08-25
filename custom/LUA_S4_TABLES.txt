@@ -1,13 +1,4 @@
 global variables = {
-	register_functions = function: 21C25968
-	new_game = function: 21C25578
-	fivetickfunc = function: 21C25920
-	mainfunc = function: 21C258D8
-	funcinfo_iterate = function: 21C25890
-	writeGlobalVarsAndTable = function: 21C25CC8
-	writeGlobalVarsAndTable_iterate = function: 21C25650
-	allvars = function: 21C24B58
-	getTableContents = function: 21C250B0
 	AI = {
 		<numbers> = {
 			DIFFICULTY_LEVEL_EASY = 1
@@ -1959,11 +1950,16 @@ global variables = {
 		<numbers> = {
 		}
 	}
+	#API FUNCTIONS
 	unrequest_events = function: 0047E4A0
 	unrequest_event = function: 0047E410
 	request_events = function: 0047E350
 	request_event = function: 0047E2C0
 	reg_func = function: 00487DE0
+	register_functions = function: 21C25968
+	new_game = function: 21C25578
+	
+	#BASIC LIBRARY FUNCTIONS
 	gsub = function: 005A54F0
 	strfind = function: 005A4E70
 	format = function: 005A5780
