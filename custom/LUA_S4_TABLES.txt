@@ -1023,7 +1023,7 @@ global variables = {
 			WARMACHINE_TURNC = 31
 			READY = 2
 		}
-		AddVehicle 			= function(x,y,players,vehicle,direction,charge,n_1) #charge = for warship/warmachine 
+		AddVehicle 			= function(x,y,players,vehicle,direction,charge,addToSquad) #charge = for warship/warmachine 
 		AddWheelerToFerry 	= function(id,vehicle) #machine/cart
 		Amount 				= function(player,vehicle)
 		AmountInArea 		= function(player,vehicle,x,y,range)
