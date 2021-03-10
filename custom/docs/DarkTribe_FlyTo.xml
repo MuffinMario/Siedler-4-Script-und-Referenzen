@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>DarkTribe</table>
+<function>FlyTo</function>
+<parameters>x, y</parameters>
+</code>
+<description>Fliegt den gerade in dem Script erstellten Manakopter an die Stelle #x #y</description>
+<example>
+-- Erstelle Manakopter für Partei 2 an der Stelle X400 Y500
+DarkTribe.AddManakopter(400,500,2)
+-- Fliege Manakopter zu X500 Y500
+DarkTribe.FlyTo(500,500)
+</example>
+<return></return>
+</function>

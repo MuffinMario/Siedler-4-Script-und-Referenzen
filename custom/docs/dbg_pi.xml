@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>dbg</table>
+<function>pi</function>
+<parameters>zahl1,zahl2,zahl3,...</parameters>
+</code>
+<description>Eine unnütze Funktion, die die Zahlen in der folge im _STDOUT stream schreibt.
+
+Der Kürzel pi steht wahrscheinlich für print integer</description>
+<example>
+dbg.pi(2,5) -- schreibt in der für den Spieler nicht sichtbaren Konsolenfenster "2 5"
+</example>
+<return></return>
+</function>

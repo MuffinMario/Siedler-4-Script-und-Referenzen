@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>dbg</table>
+<function>tp</function>
+<parameters>string</parameters>
+</code>
+<description>Ähnlich wie, jedoch schreibt diese einen String in das für den Spieler nicht sichtbare Konsolenfenster.
+
+Der Kürzel steht wahrscheinlich für trace print (siehe Debug table)</description>
+<example>
+dbg.tp("Hello world")
+dbg.tp(0 .. " people will see this")
+</example>
+<return></return>
+</function>

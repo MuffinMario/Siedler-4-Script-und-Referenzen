@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>ExistsBuildingInArea</function>
+<parameters>Partei, Gebäudetyp, x, y, radius, Gebäudestatus</parameters>
+</code>
+<description>Ähnlich wie Buildings.Amount, aber auf einen bestimmten Bereich begrenzt.</description>
+<example>
+Buildings.ExistsBuildingInArea(2,Buildings.GUARDTOWERBIG,468,323,1, Buildings.READY)
+Buildings.ExistsBuildingInArea(2,Buildings.GUARDTOWERBIG,468,323,1, Buildings.UNDERCONSTRUCTION)
+</example>
+<return>Anzahl der gefundenen Gebäude.</return>
+</function>

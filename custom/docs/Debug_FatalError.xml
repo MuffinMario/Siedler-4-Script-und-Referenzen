@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>FatalError</function>
+<parameters></parameters>
+</code>
+<description>Stoppt das Spiel und lässt ein Fenster mit der Fehlermeldung öffnen: "Error: SCRIPT: Debug.FatalError() called."</description>
+<example>
+-- stoppt das spiel und wirft einen FE
+Debug.FatalError()
+</example>
+<return></return>
+<trivia>Wozu? Jetzt mal ernsthaft. Wozu?</trivia>
+</function>

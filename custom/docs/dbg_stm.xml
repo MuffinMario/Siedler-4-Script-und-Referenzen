@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>dbg</table>
+<function>stm</function>
+<parameters>Text</parameters>
+</code>
+<description>Schreibt eine Nachricht in den Chat. Kann auch den Wert einer Variable oder einer Funktion ausgeben.</description>
+<example>
+dbg.stm("Script loaded!")
+dbg.stm(Variable)
+dbg.stm(Buildings.GetFirstBuilding(4, Buildings.GUARDTOWERSMALL))
+</example>
+<return></return>
+</function>

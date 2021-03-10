@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>AI</table>
+<function>DarkTribeUseShamans</function>
+<parameters>partei, toggle</parameters>
+</code>
+<description>Wenn #ptoggle 0 ist wird die Partei #ppartei keine Schamanen herstellen.
+Wenn #ptoggle 1 ist wird die Partei #ppartei (wieder) Schamanen herstellen</description>
+<example>
+-- schaltet Dunkle Gärtner für die Partei 2 (Dunkles Volk) ein
+AI.DarkTribeUseDarkGardeners(2,1)
+-- schaltet Dunkle Gärtner für die Partei 3 (Dunkles Volk) aus
+AI.DarkTribeUseDarkGardeners(3,0)
+</example>
+<return></return>
+</function>

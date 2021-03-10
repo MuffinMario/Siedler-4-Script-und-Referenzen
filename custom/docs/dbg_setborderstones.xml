@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>dbg</table>
+<function>setborderstones</function>
+<parameters>param1, param2, param3</parameters>
+</code>
+<description>LoremIpsumDolorSit#pAmet</description>
+<example>
+LoremIpsum(Dolor.Sit)
+</example>
+<return>LoremIpsumDolorSit#pReditus</return>
+</function>

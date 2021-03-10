@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>CrushBuilding</function>
+<parameters>ID</parameters>
+</code>
+<description>Reißt ein Gebäude ab. Dies kann unter anderem genutzt werden, um den Spieler am Bau bestimmter Gebäude zu hindern.</description>
+<example>
+Buildings.CrushBuilding(Buildings.GetFirstBuilding(4, Buildings.GUARDTOWERSMALL))  --//Ermittelt den kleinen Turm des vierten Spielers mit der kleinsten ID und reißt ihn ab.
+Buildings.CrushBuilding(Buildings.AddBuilding(150,75,1,Buildings.GUARDTOWERBIG)) --//Platziert einen großen Turm für Spieler eines und reißt ihn wieder ab.
+</example>
+<return></return>
+</function>

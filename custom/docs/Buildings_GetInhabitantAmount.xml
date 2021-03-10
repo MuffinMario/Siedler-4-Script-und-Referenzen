@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>GetInhabitantAmount</function>
+<parameters>Partei, Gebäudetyp</parameters>
+</code>
+<description>Gibt die Anzahl an aller Soldaten (egal welches Level/welcher Typ), die im angegebenen Gebäude der Partei sitzen, zurück.</description>
+<example>
+soldaten_in_kleinen_tuermen = Buildings.GetInhabitantAmount(2,Buildings.GUARDTOWERSMALL) -- alle soldaten in kleinen türmen der zweiten Partei
+</example>
+<return>Die Anzahl aller derzeitig in allen Gebäuden des Typen #pGebäudetyp untergebrachten Soldaten der Partei #pPartei</return>
+</function>

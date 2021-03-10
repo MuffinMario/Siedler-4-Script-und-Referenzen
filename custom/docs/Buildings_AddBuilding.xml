@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>AddBuilding</function>
+<parameters>x, y, Spieler, Gebäude</parameters>
+</code>
+<description>Platziert ein Gebäude für den genannten Spieler an den angegebenen Koordinaten.</description>
+<example>
+Buildings.AddBuilding(100,100, 1, Buildings.GUARDTOWERSMALL)
+</example>
+<return>Eindeutige Gebäude-ID</return>
+</function>

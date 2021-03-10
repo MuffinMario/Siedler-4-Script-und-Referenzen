@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>ActivateAI</function>
+<parameters>partei</parameters>
+</code>
+<description>Aktiviert die #pPartei sofern sie per Script deaktiviert wurde.</description>
+<example>
+
+--Deaktiviere Spieler 2
+Debug.DeactivateAI(2)
+
+... irgendwann später ...
+
+--Reaktiviere Spieler 2
+Debug.ActivateAI(2)
+</example>
+<return></return>
+</function>

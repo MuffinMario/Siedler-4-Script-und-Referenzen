@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>MakeDark</function>
+<parameters>x,y</parameters>
+</code>
+<description>Verseucht das angegebene Feld mit dunklem Land</description>
+<example>
+Debug.MakeDark(120,80)
+</example>
+<return></return>
+</function>

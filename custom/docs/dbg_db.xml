@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>dbg</table>
+<function>db</function>
+<parameters>x,y,??</parameters>
+</code>
+<description>Zerstört ein Gebäude #pdes #pdunklen #pVolkes an der Koordinate x,y. Was </description>
+<example>
+-- wofür die 1 steht weiß ich nicht.
+-- Zerstöre ein Gebäude des dunklen Volkes an position 200/400
+dbg.db(200,400,1)
+</example>
+<return></return>
+<trivia>Was diese Funktion genau macht, ist schwer herauszufinden. db könnte für destroy building stehen, aber man kann damit nur dunkle Gebäude zerstören (resultate von Tests). Das einzig praktische an dieser Funktion ist, dass man irgend ein Gebäude eines Gebäudetypen zerstören kann, und nicht das erste in einer dem Scripter unbekannten Liste</trivia>
+</function>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <function>
+<code>
+<table>AI</table>
+<function>AttackNow</function>
+<parameters>parteiVon,parteiZu,gruppenstärke</parameters>
+</code>
+<description>
+Befiehlt der Partei #pparteiVon einen Angriff auf #pparteiZu mit der gewählten #pGruppenstärke zu starten.
+</description>
+<example>
+-- Schickt 5 Truppen von Partei 2 zum Land von Partei 1, sofern erreichbar
+AI.AttackNow(2,1,5)
+</example>
+<return></return>
+ </function>

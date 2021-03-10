@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>Freeze</function>
+<parameters></parameters>
+</code>
+<description>Friert das Spiel ein.</description>
+<example>
+-- Hierzu kann man kein Beispiel machen. Diese Funktion hat keinen Sinn.
+Debug.Freeze()
+</example>
+<return></return>
+</function>

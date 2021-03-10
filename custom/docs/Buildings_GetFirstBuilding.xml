@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>GetFirstBuilding</function>
+<parameters>Partei, Gebäudetyp</parameters>
+</code>
+<description>Sucht nach dem Gebäude der angegebenen Partei und des angegebenen Gebäudetyps mit der kleinsten ID.</description>
+<example>
+Buildings.GetFirstBuilding(4, Buildings.GUARDTOWERSMALL)
+</example>
+<return>Einzigartige ID des gefundenen Gebäudes.</return>
+</function>

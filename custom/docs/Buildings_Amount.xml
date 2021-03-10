@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>Amount</function>
+<parameters>Partei, Gebäudetyp, Status</parameters>
+</code>
+<description>Überprüft, wie viele Gebäude der angegebene Spieler vom angegebenen Typ besitzt. Dabei wird in Baustellen und fertige Gebäude unterschieden.</description>
+<example>
+Buildings.Amount(2, Buildings.CASTLE, Buildings.READY)
+Buildings.Amount(2, Buildings.CASTLE, Buildings.UNDERCONSTRUCTION)
+</example>
+<return>Anzahl der Gebäude</return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Buildings</table>
+<function>IsSelected</function>
+<parameters>param1, param2, param3</parameters>
+</code>
+<description>Prüft, ob ein Gebäude eines bestimmten Typs selektiert ist.</description>
+<example>
+Buildings.IsSelected(Buildings.BARRACKS)
+</example>
+<return>True oder False</return>
+</function>

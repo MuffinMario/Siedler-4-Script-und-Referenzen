@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>AccessViolation</function>
+<parameters></parameters>
+</code>
+<description>Wirft ebenfalls einen Fatal Error</description>
+<example>
+-- Alle parameter haben nichts gebracht. Ich erwarte dass diese Funktion damit keine Parameter hat
+Debug.AccessViolation()
+</example>
+<return></return>
+</function>

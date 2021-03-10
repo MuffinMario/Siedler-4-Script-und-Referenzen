@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>MakeGreen</function>
+<parameters>x,y</parameters>
+</code>
+<description>Macht das angegebene Feld grün, wenn es vorher dunkles Land war.</description>
+<example>
+Debug.MakeGreen(120,80)
+</example>
+<return></return>
+</function>

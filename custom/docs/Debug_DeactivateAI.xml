@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Debug</table>
+<function>DeactivateAI</function>
+<parameters>partei</parameters>
+</code>
+<description>Deaktiviert die AI von der #pPartei. Somit kann diese Partei keine Gebäude bauen, Befehle erteilen, etc.. (Die Siedler laufen aber noch sofern sie etwas zu tun haben)</description>
+<example>
+--Deaktiviere Spieler 2
+Debug.DeactivateAI(2)
+--Deaktiviere Spieler 3
+Debug.DeactivateAI(3)
+--Reaktiviere Spieler 3
+Debug.ActivateAI(3)
+</example>
+<return></return>
+</function>
