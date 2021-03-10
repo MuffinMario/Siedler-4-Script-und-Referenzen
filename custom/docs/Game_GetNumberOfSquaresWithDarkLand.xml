@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>GetNumberOfSquaresWithDarkLand</function>
+<parameters>Spieler</parameters>
+</code>
+<description>Ermittelt, wie viele Felder vom angegebenen Spieler mit dunklem Land verseucht wurden. Gibt interessanterweise bei nicht-DV Spielern ähnliche Werte heraus.</description>
+<example>
+Game.GetNumberOfSquaresWithDarkLand(1)
+</example>
+<return>Menge</return>
+</function>

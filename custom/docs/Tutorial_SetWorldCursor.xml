@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>SetWorldCursor</function>
+<parameters>X, Y</parameters>
+</code>
+<description>Setzt einen riesigen roten Pfeil auf die Mapkoordinate #X #Y</description>
+<example>
+--Erstelle Pfeil auf Koordinate X100 Y200
+Tutorial.SetWorldCursor(100,200)
+--Lösche Pfeil
+Tutorial.DeleteWorldCursor()
+</example>
+<return></return>
+</function>

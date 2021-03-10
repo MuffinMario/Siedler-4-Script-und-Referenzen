@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>ArePlayerAreasConnected</function>
+<parameters>ParteiA, X, Y, ParteiB, X, Y</parameters>
+</code>
+<description>Prüft, ob zwei Ecosektoren, die die angegebenen Koordinaten enthalten, miteinander verbunden sind. Eine Verbindung besteht auch dann, wenn die Gebiete durch einen verbündeten Spieler verbunden sind.</description>
+<example>
+Game.ArePlayerAreasConnected(1, 260, 279, 2, 98, 353)
+</example>
+<return>True oder False</return>
+</function>

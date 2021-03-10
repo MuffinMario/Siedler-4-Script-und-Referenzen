@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>AmountInSector</function>
+<parameters>Unbekannt</parameters>
+</code>
+<description>Ermittelt vermutlich die Anzahl der Siedler eines Typs in einem bestimmten Ecosektor.</description>
+<example>
+Unbekannt
+</example>
+<return>Anzahl</return>
+</function>

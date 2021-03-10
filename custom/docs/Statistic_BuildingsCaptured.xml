@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Statistic</table>
+<function>BuildingsCaptured</function>
+<parameters>partei</parameters>
+</code>
+<description>Gibt an wie viele Gebäude von der #pPartei eingenommen worden sind</description>
+<example>
+Statistic.BuildingsCaptured(1)
+</example>
+<return>DIe Anzahl an eingenommenen Gebäude</return>
+</function>

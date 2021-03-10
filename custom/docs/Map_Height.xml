@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Map</table>
+<function>Height</function>
+<parameters></parameters>
+</code>
+<description>Gibt die Höhe der Map zurück</description>
+<example>
+-- bei einer 256x256 Map
+dbg.stm("Height: " .. Map.Height()); -- gibt 256 zurück
+</example>
+<return>Die Höhe der Map</return>
+</function>

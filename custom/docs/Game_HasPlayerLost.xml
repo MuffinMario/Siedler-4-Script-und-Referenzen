@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>HasPlayerLost</function>
+<parameters>Spieler</parameters>
+</code>
+<description>Prüft, ob der angegebene Spieler als verloren deklariert ist.</description>
+<example>
+Game.HasPlayerLost(1)
+</example>
+<return>True oder False</return>
+</function>

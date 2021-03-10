@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>KillVehicles</function>
+<parameters>Spieler, Fahrzeugtyp, x, y, Radius</parameters>
+</code>
+<description>Entfernt alles Fahrzeuge eines bestimmten Spielers und eines bestimmten Typs aus einem bestimmten Bereich.</description>
+<example>
+Vehicles.KillVehicles(2, Vehicles.FERRY, 195, 268, 10)
+Vehicles.KillVehicles(2, Vehicles.WARSHIP, 153, 228, 10)
+</example>
+<return></return>
+</function>

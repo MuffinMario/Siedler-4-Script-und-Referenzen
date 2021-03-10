@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>AddSettlers</function>
+<parameters>x, y, Spieler, Siedlertyp(Name oder Zahl), Menge</parameters>
+</code>
+<description>Erzeugt Siedler an den angegebenen Koordinaten.</description>
+<example>
+Settlers.AddSettlers(403, 378, 1, Settlers.SQUADLEADER, 1) --//Ein Hauptmann für Spieler 1 bei den Koordinaten 403/378
+Settlers.AddSettlers(100, 300, 1, Settlers.SLAVED_SETTLER, 25)  --//25 versklavte Siedler (können nicht im Editor platziert werden) für Spieler 1 bei den Koordinaten 100/300
+</example>
+<return></return>
+</function>

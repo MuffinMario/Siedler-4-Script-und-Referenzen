@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Goods</table>
+<function>Delete</function>
+<parameters>x, y, radius, Ware</parameters>
+</code>
+<description>Löscht alle Güter eines bestimmten Typs in einem bestimmten Gebiet.</description>
+<example>
+Goods.Delete(150,200,10,Goods.GOLDBAR)
+</example>
+<return></return>
+</function>

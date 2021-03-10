@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>Exit</function>
+<parameters></parameters>
+</code>
+<description>Beendet das Spiel</description>
+<example>
+-- Gibt hier nicht viel zu sagen. Am besten Finger von lassen :)
+Tutorial.Exit()
+</example>
+<return></return>
+</function>

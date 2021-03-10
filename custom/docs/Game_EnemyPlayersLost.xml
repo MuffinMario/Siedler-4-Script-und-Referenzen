@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>EnemyPlayersLost</function>
+<parameters></parameters>
+</code>
+<description>Setzt alle feindlichen Spieler auf verloren.</description>
+<example>
+Game.EnemyPlayersLost()
+</example>
+<return></return>
+</function>

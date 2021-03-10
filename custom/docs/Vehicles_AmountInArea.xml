@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>AmountInArea</function>
+<parameters>Spieler, Fahrzeugtyp, x, y, Radius</parameters>
+</code>
+<description>Ermittelt, wie viele Fahrzeuge eines Typs ein Spieler in einem bestimmten Gebiet besitzt.</description>
+<example>
+Vehicles.AmountInArea(1,Vehicles.FERRY,100, 200, 40)
+</example>
+<return>Menge</return>
+</function>

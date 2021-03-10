@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>PressButton</function>
+<parameters>dialog, control</parameters>
+</code>
+<description>Drückt den Knopf #control im derzeitigen #pdialog</description>
+<example>
+-- drückt den Gebäudeknopf unter der Minimap
+Tutorial.PressButton(Dialog.DLG_MINIMAP, Control.DLG_MINIMAP_CMD_BUILD)
+-- Drückt den "Grundgebäude" Knopf im Untermenü der Gebäudeauswahl (Grundgebäude = Holzfällter, Steinmetz, etc.=)
+Tutorial.PressButton(Dialog.DLG_BUILDSUBMENU, Control.DLG_BUILDSUBMENU_CMD_BASIC)
+</example>
+<return></return>
+</function>

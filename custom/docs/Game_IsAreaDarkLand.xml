@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>IsAreaDarkLand</function>
+<parameters>x,y, Radius</parameters>
+</code>
+<description>Überprüft, ob ein Gebiet vollständig mit dunklem Land verseucht wurde.</description>
+<example>
+Game.IsAreaDarkLand(266,285,12)
+</example>
+<return>True oder False</return>
+</function>

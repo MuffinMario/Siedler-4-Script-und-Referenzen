@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>AddSettlersToFerry</function>
+<parameters>FährenID, Siedlertyp, Menge</parameters>
+</code>
+<description>Fügt Siedler zu einer Fähre hinzu. Hierbei kann die Transportkapazität der Fähre nicht überschritten werden.</description>
+<example>
+Settlers.AddSettlersToFerry(ID, Settlers.THIEF, 15)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Goods</table>
+<function>AddPileEx</function>
+<parameters>x,y, Ware, Menge</parameters>
+</code>
+<description>Fügt einen Warenstapel an einer bestimmten Stelle hinzu.</description>
+<example>
+Goods.AddPileEx(151, 22, Goods.SWORD, 8)
+</example>
+<return></return>
+</function>

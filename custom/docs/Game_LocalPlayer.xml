@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>LocalPlayer</function>
+<parameters></parameters>
+</code>
+<description>Gibt die Partei des lokalen Spielers zurück</description>
+<example>
+Game.SetFightingStrength(Game.LocalPlayer(),150) -- Setze Spielstärke des eigenen Spielers auf 150%
+</example>
+<return>Zahl Partei des lokalen Spielers</return>
+</function>

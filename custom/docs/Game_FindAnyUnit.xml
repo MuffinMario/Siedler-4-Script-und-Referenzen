@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>FindAnyUnit</function>
+<parameters>Partei, x, y, Radius</parameters>
+</code>
+<description>Prüft, ob sich eine Einheit des Spielers am angegebenen Bereich befindet.</description>
+<example>
+Game.FindAnyUnit(1, 410, 349, 15)
+</example>
+<return>True oder False</return>
+</function>

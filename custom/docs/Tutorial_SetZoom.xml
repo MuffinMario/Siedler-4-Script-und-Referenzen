@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>SetZoom</function>
+<parameters>zoomFaktor</parameters>
+</code>
+<description>Setzt den derzeitigen Zoom auf #zoomFaktor.
+#zoomFaktor darf eine Zahl von 1 bis 99 sein.</description>
+<example>
+-- nahester Zoom
+Tutorial.SetZoom(99)
+-- weitester Zoom
+Tutorial.SetZoom(1)
+</example>
+<return></return>
+</function>

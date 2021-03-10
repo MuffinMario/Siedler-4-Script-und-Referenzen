@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>DeleteWorldCursor</function>
+<parameters></parameters>
+</code>
+<description>Löscht den riesigen Roten Pfeil von der Karte.</description>
+<example>
+--Erstelle Pfeil auf Koordinate X100 Y200
+Tutorial.SetWorldCursor(100,200)
+--Lösche Pfeil
+Tutorial.DeleteWorldCursor()
+</example>
+<return></return>
+</function>

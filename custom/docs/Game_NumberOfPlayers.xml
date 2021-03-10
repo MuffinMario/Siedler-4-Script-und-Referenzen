@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>NumberOfPlayers</function>
+<parameters></parameters>
+</code>
+<description>Gibt die Anzahl der Spieler auf der Karte aus.</description>
+<example>
+Game.NumberOfPlayers()
+dbg.stm(Game.NumberOfPlayers()) --//Schreibt die Anzahl der Spieler in den Chat
+</example>
+<return>Anzahl der Spieler</return>
+</function>

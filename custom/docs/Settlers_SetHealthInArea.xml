@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>SetHealthInArea</function>
+<parameters>Spieler, Siedlertyp, x, y, Radius, Gesundheit</parameters>
+</code>
+<description>Setzt die Gesundheit aller Siedler eines Typs, die den angegebenen Bereich betreten, auf den angegebenen Wert.</description>
+<example>
+Settlers.SetHealthInArea(1,Settlers.SWORDSMAN_01,100,100,20,120) --//Setzt alle Bogenschützen Level 1 im Gebiet auf 120 Gesundheitspunkte.
+</example>
+<return></return>
+</function>

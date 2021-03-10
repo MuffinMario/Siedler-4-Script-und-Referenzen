@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Statistic</table>
+<function>GoodsProduced</function>
+<parameters>partei</parameters>
+</code>
+<description>Gibt an wie viele Güter von der #pPartei Produziert worden sind</description>
+<example>
+Statistic.GoodsProduced(1)
+</example>
+<return>Die Anzahl an Güter der Partei.</return>
+</function>

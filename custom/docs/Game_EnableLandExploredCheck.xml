@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>EnableLandExploredCheck</function>
+<parameters></parameters>
+</code>
+<description>Aktiviert den Land Explored Check, welcher die Funktion Game.IsAlmostAllLandExplored() ermöglicht zu überprüfen, ob fast alles an Land erkundet wurde.</description>
+<example>
+-- einmalig
+Game.EnableLandExploredCheck()
+
+-- danach immer möglich zu benutzen
+if Game.IsAlmostAllLandExplored() == 1 then
+  dbg.stm("Fast alles an Land wurde erkundet.")
+end
+</example>
+<return></return>
+</function>

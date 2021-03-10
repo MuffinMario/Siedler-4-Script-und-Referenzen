@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Goods</table>
+<function>Amount</function>
+<parameters>Spieler, Ware</parameters>
+</code>
+<description>Gibt aus, wie viele Einheiten einer Ware der angegebene Spieler besitzt.</description>
+<example>
+Goods.Amount(1,Goods.MEAT)
+</example>
+<return>Menge</return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>ResetFogging</function>
+<parameters></parameters>
+</code>
+<description>Stellt den Fog of War in allen Gebieten wieder her, die für den Spieler nicht sichtbar sind. Ist in Kombination mit AlliesDontRevealFog erforderlich.</description>
+<example>
+Game.ResetFogging()
+</example>
+<return></return>
+</function>

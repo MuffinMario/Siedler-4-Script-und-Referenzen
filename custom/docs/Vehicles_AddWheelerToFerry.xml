@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>AddWheelerToFerry</function>
+<parameters>Eindeutige-FährenID, Fahrzeugtyp</parameters>
+</code>
+<description>Fügt ein Fahrzeug zu einer Fähre hinzu.</description>
+<example>
+Vehicles.AddWheelerToFerry(123, Vehicles.WARMACHINE)
+Vehicles.AddWheelerToFerry(ID, Vehicles.WARMACHINE) --//ID ist in diesem Fall bereits vorher festgehalten. ID = Vehicles.AddVehicle(154,12,1,Vehicles.FERRY,0,0,1)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>IsSelected</function>
+<parameters>Fahrzeugtyp, Menge</parameters>
+</code>
+<description>Prüft, ob eine bestimmte Anzahl an Fahrzeugen eines Typs selektiert wurde.</description>
+<example>
+Vehicles.IsSelected(Vehicles.FERRY, 1)
+</example>
+<return>True oder False</return>
+</function>

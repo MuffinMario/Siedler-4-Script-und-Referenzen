@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>IsAreaGreen</function>
+<parameters>x, y, Radius</parameters>
+</code>
+<description>Überprüft, ob in einem Gebiet Spuren des dunklen Landes vorhanden sind.</description>
+<example>
+Game.IsAreaGreen(100, 200, 30)
+</example>
+<return>True oder False</return>
+</function>

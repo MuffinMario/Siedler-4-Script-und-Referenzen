@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>Amount</function>
+<parameters>Spieler, Siedlertyp</parameters>
+</code>
+<description>Ermittelt, wie viele Siedler eines Typs der angegebene Spieler besitzt.</description>
+<example>
+Settlers.Amount(1, Settlers.THIEF)
+</example>
+<return>Anzahl</return>
+</function>

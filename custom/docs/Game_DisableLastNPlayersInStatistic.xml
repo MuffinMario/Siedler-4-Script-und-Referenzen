@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>DisableLastNPlayersInStatistic</function>
+<parameters>Menge der zu versteckenden Spieler</parameters>
+</code>
+<description>Versteckt die letzten Spieler in der Statistik.</description>
+<example>
+Game.DisableLastNPlayersInStatistic(1)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Map</table>
+<function>SetScreenPos</function>
+<parameters>x,y</parameters>
+</code>
+<description>Zentriert die Kamera auf einen bestimmten Punkt.</description>
+<example>
+Map.SetScreenPos(125,240)
+</example>
+<return></return>
+</function>

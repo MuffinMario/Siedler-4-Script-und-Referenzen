@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>DefaultPlayerLostCheck</function>
+<parameters>Partei</parameters>
+</code>
+<description>Überprüft, ob die Standardverlustbedingung (keine besetzten Türme mehr) für den angegebenen Spieler erfüllt ist. Wenn ja, hat der Spieler verloren.</description>
+<example>
+Game.DefaultPlayerLostCheck(1)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>EnableControls</function>
+<parameters>[control, ...]</parameters>
+</code>
+<description>Schaltet die ausgewählten Controls wieder ein</description>
+<example>
+-- schaltet die Knöpfe "Freie Siedler"/"Spezialisten" Auswählen und "Spezialisten" Erhöhen wieder an
+Tutorial.EnableControls(
+	Control.BTN_SPECIALIST_UP,
+	Control.BTN_SETTLERS,
+	Control.BTN_SETTLERS_SPECIALISTS,
+	Control.BTN_SPECIALIST1
+)
+-- Funktion die nichts anstellt, somit gar nichts macht.
+Tutorial.EnableControls()
+</example>
+<return></return>
+</function>

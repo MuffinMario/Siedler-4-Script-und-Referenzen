@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>IsAlmostAllLandExplored</function>
+<parameters></parameters>
+</code>
+<description>Gibt an, ob die meiste Landfläche bereits erkundet wurde.*
+
+!Es muss der Land Explore Check vor dem Aufruf aktiviert worden sein. (siehe Game.EnableLandExploredCheck)
+
+*Wie viel % Land genau erkundet werden muss ist unklar</description>
+<example>
+-- einmalig
+Game.EnableLandExploredCheck()
+
+-- danach immer möglich zu benutzen
+if Game.IsAlmostAllLandExplored() == 1 then
+  dbg.stm("Fast alles an Land wurde erkundet.")
+end
+</example>
+<return>1 wenn die meiste Landfläche erkundet wurde, ansonsten 0</return>
+</function>

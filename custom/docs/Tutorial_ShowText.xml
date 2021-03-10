@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>ShowText</function>
+<parameters>textIdentifier,textTeil</parameters>
+</code>
+<description>Gibt den Text der zu dem #ptextIdentifier passt aus. Wenn #ptextTeil 0 ist ist er der obere (weiße) Teil; 1 der Untere (rote)</description>
+<example>
+Tutorial.ShowText("TUT_03_001_R",0)
+Tutorial.ShowText("TUT_NEXT",1)
+</example>
+<return></return>
+</function>

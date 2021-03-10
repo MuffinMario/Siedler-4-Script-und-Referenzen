@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>DisableExcept</function>
+<parameters>[control, ...]</parameters>
+</code>
+<description>Schaltet alle Knöpfe aus, so dass man z.B. nicht mehr die Gebäude in der Gebäudeauswahl auswählen kann, oder Soldaten in der Kaserne erstellen kann. 
+Alle Parameter sind Knöpfe die nicht davon betroffen sind. Es gibt ca. 1700 Controls, die hier nicht alle passen aufzulisten. Stattdessen gehen Sie bitte auf Controls->Numbers </description>
+<example>
+-- Schaltet alle Controls ab
+Tutorial.DisableExcept()
+-- Schaltet alle Controls ab, außer die vier Knöpfe unter der Minimap (Gebäude, Siedler, Produktioneinstellungen, Statistiken)
+Tutorial.DisableExcept
+(
+	Control.DLG_MINIMAP_CMD_BUILD,
+	Control.DLG_MINIMAP_CMD_FIGURES,
+	Control.DLG_MINIMAP_CMD_PRODUCTION,
+	Control.DLG_MINIMAP_CMD_STATISTICS	
+)
+</example>
+<return></return>
+</function>

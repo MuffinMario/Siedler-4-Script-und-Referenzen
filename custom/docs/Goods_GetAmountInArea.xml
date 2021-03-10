@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Goods</table>
+<function>GetAmountInArea</function>
+<parameters>Spieler, Ware, x, y, Radius</parameters>
+</code>
+<description>Ermittelt die Menge einer Ware in einem bestimmten Gebiet.</description>
+<example>
+Goods.GetAmountInArea(1,Goods.SWORD,395,246,73)
+</example>
+<return>Menge</return>
+</function>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table/>
+<function>request_event</function>
+<parameters>Funktion, Eventtyp</parameters>
+</code>
+<description>Jede Funktion, die vom Spiel selbst aufgerufen wird, muss hier angefordert werden. Dies wird meist in new_game() erledigt.
+Mögliche Events sind: 
+TICK (Funktion wird jeden Tick aufgerufen) 
+FIVE_TICKS (Funktion wird alle fünf Ticks aufgerufen) 
+VICTORY_CONDITION_CHECK (ähnliche wie FIVE_TICKS, aber nur, solange das Spiel nicht gewonnen oder verloren wurde.)
+FIRST_TICK_OF_NEW_OR_LOADED_GAME (Beim Starten oder neu laden eines Spiels.)
+FIRST_TICK_OF_NEW_GAME (Beim Starten eines neuen Spiels.)
+PRODUCTION (unbekannt, vermutlich wenn ein Produktionsvorgang beendet wurde.)
+SPACE (unbekannt)
+BUILD_PRIO (unbekannt, vermutlich wenn die Gebäudepriorität geändert wird)
+CREATE_FOUNDATION_CART (unbekannt, vermutlich beim erstellen eines Gründungskarrens.)
+CRUSH_BUILDING (unbekannt, vermutlich wenn ein Gebäude abgerissen wird.)
+SHOW_WORK_AREA (unbekannt, vermutlich wenn der Spieler sich den Arbeitsbereich eines Gebäudes zeigen lässt.)
+MAGIC_SPELL_CAST (unbekannt, vermutlich wenn ein Spieler einen Zauber nutzt.)
+ZOOM_FACTOR_CHANGED (unbekannt, vermutlich wenn der Spieler den Zoom verstellt.)
+WARRIOR_SENT (unbekannt, vermutlich wenn ein Spieler einer Einheit einen Bewegungsbefehl erteilt.)
+WORK_AREA (unbekannt, vermutlich wenn ein Spieler einen Arbeitsbereich neu festlegt.)
+MENUCLICK (unbekannt, vermutlich wenn der Spieler im Menü klickt.)
+GOODARRIVE (unbekannt, vermutlich wenn ein Siedler eine Ware an ihr Ziel bringt.)
+WORK_STATUS (unbekannt)
+SETTLER_CHANGE_TYPE (unbekannt, vermutlich wenn ein Siedler die Rolle wechselt.)
+COMMAND (unbekannt)
+DRAG_BUILDING (unbekannt, vermutlich wenn der Spieler sich die möglichen Bauplätze für ein Gebäude zeigen lässt.)
+
+</description>
+<example>
+... Funktion Beispiel und VictoryConditionCheck werden hier geschrieben ...
+
+function new_game()
+	request_event(VictoryConditionCheck, Events.VICTORY_CONDITION_CHECK)
+	request_event(Beispiel, Events.FIVE_TICKS)
+end
+function register_functions()
+	reg_func(VictoryConditionCheck)
+	reg_func(Beispiel)
+end
+</example>
+<return></return>
+</function>

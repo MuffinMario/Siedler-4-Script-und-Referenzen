@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>GetCurrentZoomFactor</function>
+<parameters></parameters>
+</code>
+<description>Gibt den derzeitigen Zoomfaktor zurück. 
+#pDiese #pFunktion #pfunktioniert #pnicht.</description>
+<example>
+-- gibt den derzeitigen zoom faktor im chatfenster zurück
+-- würde die Funktion funktionieren. stattdessen gibt diese nur 0 zurück
+dbg.stm(Tutorial.GetCurrentZoomFactor())
+</example>
+<return>Gibt immer 0 zurück.</return>
+<trivia>In Tutorial01 wird diese Funktion aufgerufen. Tut aber absolut #pgar #pnichts.</trivia>
+</function>

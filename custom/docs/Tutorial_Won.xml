@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>Won</function>
+<parameters></parameters>
+</code>
+<description>Lässt den Spieler gewinnen. Nicht für normale Spiele benutzen, benutze stattdessen das VictoyConditionCheck - Verfahren.</description>
+<example>
+Tutorial.Won()
+</example>
+<return></return>
+</function>

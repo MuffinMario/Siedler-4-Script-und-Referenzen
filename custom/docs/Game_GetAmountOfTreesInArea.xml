@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>GetAmountOfTreesInArea</function>
+<parameters>x, y, Radius</parameters>
+</code>
+<description>Ermittelt die Anzahl der Bäume im Gebiet.</description>
+<example>
+Game.GetAmountOfTreesInArea(155,570,40)
+</example>
+<return>Menge</return>
+</function>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Statistic</table>
+<function>SpellsCast</function>
+<parameters>partei</parameters>
+</code>
+<description>Gibt die Anzahl an verwendeten Zaubersprüchen zurück.</description>
+<example>
+
+</example>
+<return>Siehe Beschreibung</return>
+</function>

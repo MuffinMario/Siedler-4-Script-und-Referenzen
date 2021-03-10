@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>DefaultPlayersLostCheck</function>
+<parameters></parameters>
+</code>
+<description>Überprüft für alle Spieler, ob die Standardverlustbedingung erfüllt wurde, ähnlich wie DefaultPlayerLostCheck.</description>
+<example>
+Game.DefaultPlayersLostCheck()
+</example>
+<return></return>
+</function>

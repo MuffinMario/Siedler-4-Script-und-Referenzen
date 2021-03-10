@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>IsAreaOwned</function>
+<parameters>Spieler, x, y, Radius</parameters>
+</code>
+<description>Überprüft, ob das genannte Gebiet dem genannten Spieler gehört.</description>
+<example>
+Game.IsAreaOwned(1,303,164,1)
+</example>
+<return>True oder False</return>
+</function>

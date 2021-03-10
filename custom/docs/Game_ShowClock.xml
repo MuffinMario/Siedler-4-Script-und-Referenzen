@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>ShowClock</function>
+<parameters>Zeit</parameters>
+</code>
+<description>Erstellt einen Countdown (Zeit in Sekunden) in der oberen rechten Ecke. Diese Angabe ist nur für den Spieler und reicht noch nicht für eine darauf basierende Bedingung.</description>
+<example>
+Game.ShowClock(600)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>ProductionAmount</function>
+<parameters>Siedlertyp</parameters>
+</code>
+<description>Ermittelt, wie viele Siedler eines Typs es auf der Karte gibt, scheinbar unabhängig vom Spieler.</description>
+<example>
+Settlers.ProductionAmount(Settlers.PIONEER)
+</example>
+<return>Anzahl</return>
+</function>

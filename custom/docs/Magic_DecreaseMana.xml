@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Magic</table>
+<function>DecreaseMana</function>
+<parameters>Spieler, Menge</parameters>
+</code>
+<description>Verringert den Manavorrat des angegebenen Spielers um die angegebene Menge.</description>
+<example>
+Magic.DecreaseMana(1,60)
+</example>
+<return></return>
+</function>

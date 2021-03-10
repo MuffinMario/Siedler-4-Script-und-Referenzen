@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>Random100</function>
+<parameters></parameters>
+</code>
+<description>Gibt eine Zufallszahl zwischen 0 und 99 zurück.</description>
+<example>
+Game.Random100()
+</example>
+<return>Zufallszahl</return>
+</function>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table/>
+<function>register_functions</function>
+<parameters></parameters>
+</code>
+<description>Diese Funktion dient zur Registrierung aller Funktionen, die als Event aufgerufen werden. 
+Für Funktionen, die nur von einer anderen Funktion aufgerufen werden, ist dies nicht erforderlich.
+Diese Funktion wird ähnlich wie new_game() automatisch beim ersten Tick eines Spiels aufgerufen.
+</description>
+<example>
+... funktionen werden erstellt und mit new_game requested ...
+
+function register_functions()
+	reg_func(Beispiel1)
+	reg_func(Beispiel2)
+	reg_func(Beispiel3)
+end
+</example>
+<return>Da diese Funktion selbst geschrieben wird und vom Spiel intern aufgerufen wird, hat diese Funktion keinen Rückgabewert</return>
+</function>

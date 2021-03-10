@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>RWM</function>
+<parameters>toggle</parameters>
+</code>
+<description>Deckt die Map auf/zu.
+#ptoggle = 1 -> alles Sichtbar.
+#ptoggle = 0 -> alles wieder unsichtbar</description>
+<example>
+-- Deckt die Karte auf
+Tutorial.RWM(1)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>GetDifficulty</function>
+<parameters></parameters>
+</code>
+<description>Prüft, welche Schwierigkeit eingestellt ist</description>
+<example>
+Game.GetDifficulty()
+</example>
+<return>0 für leicht, 1 für normal</return>
+</function>

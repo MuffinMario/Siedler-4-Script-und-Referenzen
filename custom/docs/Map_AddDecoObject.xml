@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Map</table>
+<function>AddDecoObject</function>
+<parameters>x,y, ObjectID</parameters>
+</code>
+<description>Platziert eine Objekt an den angegeben Koordinaten. Auf diese Weise lassen sich einige Objekte platzieren, die es nicht im Editor gibt.</description>
+<example>
+Map.AddDecoObject(124,423,115) --//Setzt den Sockel (115) von Morbus aus der ersten Trojanermission des Addons.
+</example>
+<return></return>
+</function>

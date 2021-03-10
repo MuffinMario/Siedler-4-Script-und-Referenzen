@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>AmountInArea</function>
+<parameters>Spieler, Siedlertyp, x, y, Radius</parameters>
+</code>
+<description>Ermittelt die Anzahl der Siedler eines Typs und Spielers in einem bestimmten Gebiet.</description>
+<example>
+Settlers.AmountInArea(1, Settlers.THIEF, 100, 200, 25)
+</example>
+<return>Anzahl</return>
+</function>

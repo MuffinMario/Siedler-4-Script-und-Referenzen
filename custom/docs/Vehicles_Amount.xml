@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>Amount</function>
+<parameters>Spieler, Fahrzeugtyp</parameters>
+</code>
+<description>Ermittelt, wie viele Fahrzeuge eines Typs ein Spieler besitzt.</description>
+<example>
+Vehicles.Amount(1, Vehicles.FERRY)
+</example>
+<return>Menge</return>
+</function>

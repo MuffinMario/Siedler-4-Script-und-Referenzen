@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>GetHealth</function>
+<parameters>x,y</parameters>
+</code>
+<description>Ermittelt die Gesundheit eines Fahrzeugs an den angegebenen Koordinaten.</description>
+<example>
+Vehicles.GetHealth(154,12)
+</example>
+<return>Gesundheit</return>
+</function>

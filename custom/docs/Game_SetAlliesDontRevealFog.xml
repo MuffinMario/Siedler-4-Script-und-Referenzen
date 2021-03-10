@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>SetAlliesDontRevealFog</function>
+<parameters>True oder False</parameters>
+</code>
+<description>Sorgt dafür, dass der Sichtradius verbündeter Spieler nicht enthüllt wird. Scheint nur zu funktionieren, wenn es in NewGame deklariert wird, außerdem muss der Fog of War dann reseted werden, sonst wird der Bereich nur dunkel und nicht schwarz.</description>
+<example>
+Game.SetAlliesDontRevealFog(1)
+</example>
+<return></return>
+</function>

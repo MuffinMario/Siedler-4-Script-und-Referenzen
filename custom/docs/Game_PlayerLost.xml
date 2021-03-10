@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>PlayerLost</function>
+<parameters>Spieler</parameters>
+</code>
+<description>Setzt einen Spieler auf verloren.</description>
+<example>
+Game.PlayerLost(1)
+</example>
+<return></return>
+</function>

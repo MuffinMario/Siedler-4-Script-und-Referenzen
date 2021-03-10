@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>EnableAllControls</function>
+<parameters></parameters>
+</code>
+<description>Schaltet alle Controls wieder an, sofern ausgestellt</description>
+<example>
+-- Alle Controls ausstellen
+Tutorial.DisableExcept()
+-- Stellt alle Controls an
+Tutorial.EnableAllControls()
+</example>
+<return></return>
+<trivia>Nicht zu verwechseln mit Game.EnableAllControls(toggle) </trivia>
+</function>

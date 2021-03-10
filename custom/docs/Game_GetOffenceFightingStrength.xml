@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>GetOffenceFightingStrength</function>
+<parameters>Partei</parameters>
+</code>
+<description>Gibt die offensive Kampfkraft des angegebenen Spieler aus.</description>
+<example>
+Game.GetOffenceFightingStrength(1)
+</example>
+<return>Kampfkraft</return>
+</function>

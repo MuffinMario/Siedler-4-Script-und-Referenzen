@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Vehicles</table>
+<function>AmountInSector</function>
+<parameters>Derzeit unbekannt</parameters>
+</code>
+<description>Ermittelt, wie viele Fahrzeuge eines Typs ein Spieler in einem bestimmten Ecosector besitzt. Funktioniert wahrscheinlich nur für Landfahrzeuge.
+</description>
+<example>
+
+</example>
+<return>Menge</return>
+</function>

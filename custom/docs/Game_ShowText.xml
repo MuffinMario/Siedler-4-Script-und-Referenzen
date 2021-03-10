@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>ShowText</function>
+<parameters>Textbaustein, x, y</parameters>
+</code>
+<description>Zeigt einen Text im Nachrichtenfenster an. Für Mapper weitgehend nutzlos, da die Texte in einer unzugänglichen Datei hinterlegt sind. Wenn Koordinaten hinterlegt sind, springt das Spiel beim Klick auf die Nachricht zu ihnen.</description>
+<example>
+Game.ShowText("MD_ECO_SCRIPT_ONE_02",430,415)
+</example>
+<return></return>
+</function>

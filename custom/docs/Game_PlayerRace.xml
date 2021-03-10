@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>PlayerRace</function>
+<parameters>Spieler</parameters>
+</code>
+<description>Gibt aus, welches Volk der Spieler gewählt hat.</description>
+<example>
+Game.PlayerRace(1)
+</example>
+<return>0 für Römer, 1 für Wikinger, 2 für Mayas, 3 für das Dunkle Volk, 4 für Trojaner.</return>
+</function>

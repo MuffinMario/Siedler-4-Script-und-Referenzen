@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Magic</table>
+<function>IncreaseMana</function>
+<parameters>Spieler, Menge</parameters>
+</code>
+<description>Erhöht den Manavorrat des angegebenen Spielers um die angegebene Menge.</description>
+<example>
+Magic.IncreaseMana(1,1000)
+</example>
+<return></return>
+</function>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>SelectNextBuilding</function>
+<parameters>gebäudetyp</parameters>
+</code>
+<description>Wählt das nächste Gebäude des typen #pgebäudetyp aus, als würde man drauf klicken und zentriert die Kamera auf das Gebäude.</description>
+<example>
+-- wählt den ersten kleinen Turm aus
+-- sofern gewählt springe auf nächsten kleinen Turm wenn diese Funktion noch mal aufgerufen wird
+Tutorial.SelectNextBuilding(Buildings.GUARDTOWERSMALL)
+</example>
+<return></return>
+</function>

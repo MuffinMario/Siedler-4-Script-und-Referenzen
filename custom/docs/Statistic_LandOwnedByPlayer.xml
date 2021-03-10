@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Statistic</table>
+<function>LandOwnedByPlayer</function>
+<parameters>partei</parameters>
+</code>
+<description>Gibt die Anzahl an % zurück, die die Partei an Landfläche besitzt (Berechnung der Fläche wird im Spiel möglicherweise falsch berechnet)</description>
+<example>
+Statistic.LandOwnedByPlayer(1)
+</example>
+<return>Siehe Beschreibung</return>
+</function>

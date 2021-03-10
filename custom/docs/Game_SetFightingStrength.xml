@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>SetFightingStrength</function>
+<parameters>Spieler, Wert</parameters>
+</code>
+<description>Setzt die Offensive Kampfkraft des Spielers auf den angegebenen Wert (maximal 150). Wenn der Wert für einen Spieler einmal per Script festgelegt wurde, skaliert er nicht mehr normal mit dem Siedlungswert.</description>
+<example>
+Game.SetFightingStrength(1, 150)
+</example>
+<return></return>
+</function>

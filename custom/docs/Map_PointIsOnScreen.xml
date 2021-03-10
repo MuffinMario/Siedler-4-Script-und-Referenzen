@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Map</table>
+<function>PointIsOnScreen</function>
+<parameters>x,y</parameters>
+</code>
+<description>Gibt an, ob der Punkt auf dem Bildschirm des Spielers zu sehen ist.</description>
+<example>
+Map.PointIsOnScreen(128,128)
+</example>
+<return>Gibt 1 zurück, sofern der Punkt auf dem Bildschirm zu sehen ist.
+Ansonsten wird 0 zurückgegeben</return>
+</function>

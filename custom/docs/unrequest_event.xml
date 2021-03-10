@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table/>
+<function>unrequest_event</function>
+<parameters>Funktion, Eventtyp</parameters>
+</code>
+<description>Macht request_event rückgängig. Hierzu muss der Name der Funktion sowie dessen Eventtyp eingetragen werden. So können Funktionen, die nicht mehr benötigt werden, deaktiviert werden.</description>
+<example>
+unrequest_event(Beispiel, Events.FIVE_TICKS)
+</example>
+<trivia>Aus komischen Gründen funktioniert unrequest_event(Funktion,EventTyp) manchmal nicht, wenn die Funktion in der Funktion selbst unrequested wird</trivia>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Magic</table>
+<function>CurrentManaAmount</function>
+<parameters>Spieler</parameters>
+</code>
+<description>Gibt den aktuellen Manavorrat des Spielers aus</description>
+<example>
+Magic.CurrentManaAmount(1)
+</example>
+<return>Manavorrat</return>
+</function>

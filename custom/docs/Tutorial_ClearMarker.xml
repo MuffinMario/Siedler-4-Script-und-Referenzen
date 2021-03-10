@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Tutorial</table>
+<function>ClearMarker</function>
+<parameters></parameters>
+</code>
+<description>Löscht den Marker (Pfeil am Bildschirm) vom Bildschirm</description>
+<example>
+-- Setze Marker an Position X89 Y312 (Position von dem ersten Gebäude der Gebäudeauswahl)
+Tutorial.SetMarker(89,312)
+-- Lösche Marker wieder 
+Tutorial.ClearMarker()
+</example>
+<return></return>
+</function>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>Random</function>
+<parameters>Zahl</parameters>
+</code>
+<description>Gibt eine "zufällige" Zahl zwischen 0 und Zahl-1 zurück.</description>
+<example>
+Game.Random(5) --//Gibt eine Zahl zwischen 0 und 4 zurück.
+</example>
+<return>Zufallszahl</return>
+</function>

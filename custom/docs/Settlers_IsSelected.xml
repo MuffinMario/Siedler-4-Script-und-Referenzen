@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Settlers</table>
+<function>IsSelected</function>
+<parameters>Siedlertyp, Anzahl</parameters>
+</code>
+<description>Ermittelt, ob eine bestimmte Anzahl von Siedlern eines bestimmten Typs selektiert wurde.</description>
+<example>
+Settlers.IsSelected(Settlers.THIEF, 5)
+</example>
+<return>True oder False</return>
+</function>

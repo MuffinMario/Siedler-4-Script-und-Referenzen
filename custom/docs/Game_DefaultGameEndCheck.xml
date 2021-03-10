@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<function>
+<code>
+<table>Game</table>
+<function>DefaultGameEndCheck</function>
+<parameters></parameters>
+</code>
+<description>Überprüft, ob das Spiel entschieden ist. Wenn ja, erscheint die Nachricht, das dass Spiel gewonnen bzw. verloren wurde.</description>
+<example>
+Game.DefaultGameEndCheck()
+</example>
+<return></return>
+</function>
